@@ -15,9 +15,9 @@ export default function TagCloud({ posts }: Props) {
   const tags = getTagsWithCount(posts);
   if (tags.length === 0) return null;
 
-  const counts = tags.map((t) => t.count);
-  const minCount = Math.min(...counts);
-  const maxCount = Math.max(...counts);
+  // getTagsWithCount は降順ソート済みなので先頭が最大、末尾が最小
+  const maxCount = tags[0].count;
+  const minCount = tags[tags.length - 1].count;
   const range = maxCount - minCount || 1;
 
   return (

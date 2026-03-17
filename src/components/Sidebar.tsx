@@ -56,7 +56,7 @@ export default function Sidebar({ posts, toc, categories }: SidebarProps) {
 
   return (
     <div className="space-y-6 h-full">
-      <SearchBox posts={posts ?? []} />
+      <SearchBox />
 
       {/* カテゴリ・タグ一覧（省略せずそのまま） */}
       {categories && categories.length > 0 && (

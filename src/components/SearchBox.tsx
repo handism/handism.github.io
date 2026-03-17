@@ -8,13 +8,6 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 
 /**
- * 検索ボックスのプロパティ。
- */
-type Props = {
-  posts?: PostMeta[]; // No longer used for search, but keeping for compatibility if needed
-};
-
-/**
  * マッチ位置情報をもとにテキストを <mark> でハイライトした React ノード配列を返す。
  */
 function highlightText(text: string, indices: readonly RangeTuple[]): React.ReactNode[] {
@@ -43,7 +36,7 @@ function highlightText(text: string, indices: readonly RangeTuple[]): React.Reac
 /**
  * 記事を検索する入力UI。
  */
-export default function SearchBox({ posts: _initialPosts }: Props) {
+export default function SearchBox() {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [allPosts, setAllPosts] = useState<PostMeta[]>([]);

@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState } from 'react';
  * 検索ボックスのプロパティ。
  */
 type Props = {
-  posts: PostMeta[];
+  posts?: PostMeta[]; // No longer used for search, but keeping for compatibility if needed
 };
 
 /**
@@ -43,15 +43,31 @@ function highlightText(text: string, indices: readonly RangeTuple[]): React.Reac
 /**
  * 記事を検索する入力UI。
  */
-export default function SearchBox({ posts }: Props) {
+export default function SearchBox({ posts: _initialPosts }: Props) {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [allPosts, setAllPosts] = useState<PostMeta[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const searcher = useMemo(() => createPostSearcher(posts), [posts]);
+  const searcher = useMemo(() => createPostSearcher(allPosts), [allPosts]);
   const results = useMemo(
     () => searchPostsWithMatches(searcher, debouncedQuery),
     [searcher, debouncedQuery]
   );
+
+  const fetchPosts = async () => {
+    if (allPosts.length > 0 || isLoading) return;
+    setIsLoading(true);
+    try {
+      const res = await fetch('/search.json');
+      const data = await res.json();
+      setAllPosts(data);
+    } catch (e) {
+      console.error('Failed to fetch search data:', e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const hasResults = debouncedQuery.length > 0 && results.length > 0;
 
@@ -68,15 +84,26 @@ export default function SearchBox({ posts }: Props) {
       <label htmlFor="site-search" className="sr-only">
         記事検索
       </label>
-      <input
-        id="site-search"
-        name="q"
-        type="text"
-        placeholder="検索..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        className="w-full border border-border bg-card text-text placeholder:text-text/40 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/40 transition"
-      />
+      <div className="relative">
+        <input
+          id="site-search"
+          name="q"
+          type="text"
+          placeholder="検索..."
+          value={query}
+          onFocus={fetchPosts}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            fetchPosts();
+          }}
+          className="w-full border border-border bg-card text-text placeholder:text-text/40 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/40 transition"
+        />
+        {isLoading && (
+          <div className="absolute right-3 top-2.5">
+            <div className="animate-spin h-4 w-4 border-2 border-accent border-t-transparent rounded-full" />
+          </div>
+        )}
+      </div>
       <ul
         className={`mt-2 space-y-1 ${hasResults ? 'bg-card border border-border rounded-lg p-2' : ''}`}
       >

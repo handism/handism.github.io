@@ -1,5 +1,6 @@
 // src/lib/post-parser.ts
 import { siteConfig } from '@/src/config/site';
+import { estimateReadingMinutes } from '@/src/lib/utils';
 import type { PostMeta } from '@/src/types/post';
 import matter from 'gray-matter';
 import { z } from 'zod';
@@ -89,13 +90,16 @@ export function createPostMeta(
   data: ValidatedFrontmatter,
   content: string
 ): PostMeta {
+  const plaintext = markdownToPlaintext(content);
   return {
     slug,
     title: data.title,
     date: data.date,
     tags: data.tags,
     category: data.category,
-    plaintext: markdownToPlaintext(content),
+    plaintext,
+    description: plaintext.slice(0, 150),
+    readingMinutes: estimateReadingMinutes(plaintext),
     image: data.image,
   };
 }

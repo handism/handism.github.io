@@ -20,11 +20,19 @@ const _loadAndParseMeta = cache(async function _loadAndParseMeta(
 /**
  * 全記事のメタ情報を取得（一覧用）。
  */
-export const getAllPostMeta = cache(async function getAllPostMeta(): Promise<PostMeta[]> {
+export const getAllPostMeta = cache(async function getAllPostMeta(
+  includePlaintext = true
+): Promise<PostMeta[]> {
   const sources = await readAllPostSources();
   const posts = sources.map(({ slug, raw }) => {
     const { data, content } = parsePostSource(raw);
-    return createPostMeta(slug, data, content);
+    const meta = createPostMeta(slug, data, content);
+
+    if (!includePlaintext) {
+      const { plaintext, ...rest } = meta;
+      return rest as PostMeta;
+    }
+    return meta;
   });
 
   return posts.sort((a, b) => {

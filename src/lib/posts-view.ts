@@ -16,7 +16,8 @@ type BlogViewContext = {
  * 一覧ページ共通で使う投稿データとカテゴリ一覧を返す。
  */
 export async function getBlogViewContext(): Promise<BlogViewContext> {
-  const allPosts = await getAllPostMeta();
+  // 一覧ページでは検索用の plaintext は不要なので含めない
+  const allPosts = await getAllPostMeta(false);
   const categories = Array.from(new Set(allPosts.map((post) => post.category)));
   return { allPosts, categories };
 }

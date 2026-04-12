@@ -2,7 +2,7 @@
 import BlogLayout from '@/src/components/BlogLayout';
 import Pagination from '@/src/components/Pagination';
 import PostCardList from '@/src/components/PostCardList';
-import type { CategoryCount, TagCount } from '@/src/lib/posts-view';
+import type { CategoryCount, TagCount } from '@/src/lib/post-taxonomy';
 import type { PostMeta } from '@/src/types/post';
 
 type PostListPageProps = {

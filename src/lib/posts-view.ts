@@ -1,6 +1,11 @@
 // src/lib/posts-view.ts
 import { getAllPostMeta } from '@/src/lib/posts-server';
-import { getCategoriesWithCount, getTagsWithCount } from '@/src/lib/post-taxonomy';
+import {
+  getCategoriesWithCount,
+  getTagsWithCount,
+  type CategoryCount,
+  type TagCount,
+} from '@/src/lib/post-taxonomy';
 import type { PostMeta } from '@/src/types/post';
 
 type PaginatedPosts = {
@@ -8,15 +13,6 @@ type PaginatedPosts = {
   totalPages: number;
 };
 
-export type TagCount = {
-  tag: string;
-  count: number;
-};
-
-export type CategoryCount = {
-  category: string;
-  count: number;
-};
 
 type BlogViewContext = {
   allPosts: PostMeta[];

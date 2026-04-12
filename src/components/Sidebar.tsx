@@ -1,7 +1,7 @@
 // src/components/Sidebar.tsx
 'use client';
 import TagCloud from '@/src/components/TagCloud';
-import type { CategoryCount, TagCount } from '@/src/lib/posts-view';
+import type { CategoryCount, TagCount } from '@/src/lib/post-taxonomy';
 import { categoryToSlug } from '@/src/lib/utils';
 import type { TocItem } from '@/src/types/post';
 import { Menu } from 'lucide-react';

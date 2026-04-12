@@ -1,6 +1,6 @@
 // src/components/BlogLayout.tsx
 import Sidebar from '@/src/components/Sidebar';
-import type { CategoryCount, TagCount } from '@/src/lib/posts-view';
+import type { CategoryCount, TagCount } from '@/src/lib/post-taxonomy';
 import { TocItem } from '@/src/types/post';
 import { ReactNode } from 'react';
 

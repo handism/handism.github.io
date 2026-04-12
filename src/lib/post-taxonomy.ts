@@ -9,6 +9,19 @@ export function getAllTags(posts: PostMeta[]): string[] {
 }
 
 /**
+ * 投稿配列からカテゴリと出現回数の一覧を返す（アルファベット順）。
+ */
+export function getCategoriesWithCount(posts: PostMeta[]): { category: string; count: number }[] {
+  const countMap = new Map<string, number>();
+  for (const post of posts) {
+    countMap.set(post.category, (countMap.get(post.category) ?? 0) + 1);
+  }
+  return Array.from(countMap.entries())
+    .map(([category, count]) => ({ category, count }))
+    .sort((a, b) => a.category.localeCompare(b.category));
+}
+
+/**
  * 投稿配列からタグと出現回数の一覧を返す（出現回数の多い順）。
  */
 export function getTagsWithCount(posts: PostMeta[]): { tag: string; count: number }[] {

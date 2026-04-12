@@ -43,9 +43,7 @@ export default function PostCard({ post, priorityImage = false }: PostCardProps)
       <div className="p-6">
         {/* タイトル */}
         <h2 className="text-2xl font-bold mb-3 tracking-tight group-hover:text-accent transition-colors">
-          <Link href={`/blog/posts/${post.slug}`}>
-            {post.title}
-          </Link>
+          <Link href={`/blog/posts/${post.slug}`}>{post.title}</Link>
         </h2>
 
         {/* 説明文 */}

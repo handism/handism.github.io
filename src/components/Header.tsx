@@ -62,8 +62,9 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-bg/95 backdrop-blur-sm border-b border-border/50">
-      <div className="max-w-6xl mx-auto px-4 py-3 md:py-4 relative flex flex-col md:flex-row md:items-center md:justify-between gap-1 md:gap-0">
+    <div className="pt-4 px-2 md:px-4 sticky top-0 z-50">
+      <header className="mx-auto w-full max-w-6xl bg-bg/70 backdrop-blur-2xl border border-border/50 shadow-sm rounded-3xl md:rounded-full transition-all">
+        <div className="px-4 md:px-6 py-2 md:py-3 relative flex flex-col md:flex-row md:items-center md:justify-between gap-1 md:gap-0">
         <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6">
           <Link href="/" className="text-xl font-bold text-text hover:opacity-80">
             {siteConfig.name}
@@ -105,9 +106,9 @@ export default function Header() {
                 onMouseLeave={() => setIsOpen(false)}
                 className={`
                   absolute left-0 mt-2 w-48
-                  rounded-md border border-border
-                  bg-card/95 backdrop-blur-md
-                  shadow-xl shadow-black/20
+                  rounded-2xl border border-border/50
+                  bg-card/80 backdrop-blur-xl
+                  shadow-2xl shadow-black/10
                   transition-all z-50
                   ${isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'}
                 `}
@@ -127,7 +128,7 @@ export default function Header() {
                           tabIndex={isOpen ? 0 : -1}
                           onClick={() => setIsOpen(false)}
                           onKeyDown={(e) => handleItemKeyDown(e, index)}
-                          className="block px-4 py-2 text-sm text-text/80 hover:text-accent hover:bg-accent/10 first:rounded-t-md last:rounded-b-md"
+                          className="block px-4 py-2 text-sm text-text/80 hover:text-accent hover:bg-accent/10 first:rounded-t-2xl last:rounded-b-2xl transition-colors"
                         >
                           {item.label}
                         </a>
@@ -143,7 +144,7 @@ export default function Header() {
                           tabIndex={isOpen ? 0 : -1}
                           onClick={() => setIsOpen(false)}
                           onKeyDown={(e) => handleItemKeyDown(e, index)}
-                          className="block px-4 py-2 text-sm text-text/80 hover:text-accent hover:bg-accent/10 first:rounded-t-md last:rounded-b-md"
+                          className="block px-4 py-2 text-sm text-text/80 hover:text-accent hover:bg-accent/10 first:rounded-t-2xl last:rounded-b-2xl transition-colors"
                         >
                           {item.label}
                         </Link>
@@ -170,7 +171,8 @@ export default function Header() {
           <SkinSelector />
           <ThemeToggle />
         </div>
-      </div>
-    </header>
+        </div>
+      </header>
+    </div>
   );
 }

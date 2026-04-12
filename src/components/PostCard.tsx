@@ -27,7 +27,7 @@ export default function PostCard({ post, priorityImage = false }: PostCardProps)
               alt={post.title}
               fill
               priority={priorityImage}
-              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
+              className="object-cover group-hover:scale-105 group-focus-within:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
@@ -42,7 +42,7 @@ export default function PostCard({ post, priorityImage = false }: PostCardProps)
 
       <div className="p-6">
         {/* タイトル */}
-        <h2 className="text-2xl font-bold mb-3 tracking-tight group-hover:text-accent transition-colors">
+        <h2 className="text-2xl font-bold mb-3 tracking-tight group-hover:text-accent group-focus-within:text-accent transition-colors">
           <Link href={`/blog/posts/${post.slug}`}>{post.title}</Link>
         </h2>
 

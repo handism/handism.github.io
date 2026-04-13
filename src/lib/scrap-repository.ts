@@ -35,7 +35,10 @@ export async function readScrapSourceBySlug(slug: string): Promise<ScrapSource |
   try {
     const raw = await fs.readFile(fullPath, 'utf8');
     return { slug, raw };
-  } catch {
-    return null;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      return null;
+    }
+    throw error;
   }
 }

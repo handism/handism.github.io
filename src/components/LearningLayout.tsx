@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import type { TocItem } from '@/src/types/post';
 import type { LearningPostMeta, LearningCourseMeta } from '@/src/types/learning';
-import { BookOpen, List, ChevronRight, X, Menu } from 'lucide-react';
+import { BookOpen, ChevronRight, X, Menu } from 'lucide-react';
 
 interface LearningLayoutProps {
   children: React.ReactNode;

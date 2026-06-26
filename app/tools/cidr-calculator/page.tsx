@@ -1,5 +1,6 @@
 'use client';
 
+import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { useState, useMemo } from 'react';
 import { Binary, Clipboard, Check } from 'lucide-react';
 
@@ -141,7 +142,11 @@ export default function CidrCalculatorPage() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-8 md:py-12">
+    <ToolPageLayout
+      title="IP Subnet & CIDR Calculator"
+      description="IPアドレスとサブネットマスクの入力から、ネットワークレンジやホスト可能数を即座に割り出します。"
+      icon={Binary}
+    >
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 border border-border rounded-lg bg-secondary text-text text-xs font-bold mb-3">
@@ -310,6 +315,6 @@ export default function CidrCalculatorPage() {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }

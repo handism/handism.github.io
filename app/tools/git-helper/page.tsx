@@ -1,5 +1,6 @@
 'use client';
 
+import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { useState, useMemo } from 'react';
 import { Terminal, Search, Copy, Check, Sparkles, AlertTriangle, ShieldCheck } from 'lucide-react';
 
@@ -296,7 +297,11 @@ export default function GitHelper() {
   };
 
   return (
-    <div className="min-h-screen bg-bg text-text py-12 px-4 md:px-8">
+    <ToolPageLayout
+      title="Git Command Helper"
+      description="開発中によく直面するGit操作のユースケース（やりたいこと）を選び、パラメータを入力して、最適なコマンドを安全かつ迅速に生成します。"
+      icon={Terminal}
+    >
       <div className="max-w-6xl mx-auto">
         {/* ヘッダー */}
         <div className="flex flex-col items-center text-center mb-10">
@@ -476,6 +481,6 @@ export default function GitHelper() {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }

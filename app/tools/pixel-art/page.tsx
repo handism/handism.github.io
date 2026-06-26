@@ -1,5 +1,6 @@
 'use client';
 
+import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { useState, useEffect, useRef } from 'react';
 import { Palette, Trash2, Eye, EyeOff, Download, PenTool, PaintBucket, Eraser } from 'lucide-react';
 
@@ -180,7 +181,11 @@ export default function PixelArtPage() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-8 md:py-12">
+    <ToolPageLayout
+      title="Pixel Art Canvas"
+      description="グリッド上に自由にドット絵を描き、PNGやSVG形式として実スケールで保存できます。"
+      icon={Palette}
+    >
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 border border-border rounded-lg bg-secondary text-text text-xs font-bold mb-3">
@@ -397,6 +402,6 @@ export default function PixelArtPage() {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }

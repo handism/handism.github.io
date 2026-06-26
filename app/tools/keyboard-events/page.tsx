@@ -1,5 +1,6 @@
 'use client';
 
+import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { useState, useEffect, useRef } from 'react';
 import { Keyboard, Trash2, ShieldAlert, Sparkles } from 'lucide-react';
 
@@ -191,7 +192,11 @@ export default function KeyboardEvents() {
   ];
 
   return (
-    <div className="min-h-screen bg-bg text-text py-12 px-4 md:px-8" ref={visualizerRef}>
+    <ToolPageLayout
+      title="Keyboard Event Visualizer"
+      description="キーボードを押すと、JavaScriptのイベント情報や入力パラメータをリアルタイムで美しく可視化します。"
+      icon={Keyboard}
+    >
       <div className="max-w-6xl mx-auto">
         {/* ヘッダー */}
         <div className="flex flex-col items-center text-center mb-10">
@@ -401,6 +406,6 @@ export default function KeyboardEvents() {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }

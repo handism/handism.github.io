@@ -1,5 +1,6 @@
 'use client';
 
+import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { useState } from 'react';
 import { Layers, Copy, Check, Sparkles, Sliders } from 'lucide-react';
 
@@ -67,7 +68,11 @@ border-radius: 24px;`;
   };
 
   return (
-    <div className="min-h-screen bg-bg text-text py-12 px-4 md:px-8">
+    <ToolPageLayout
+      title="CSS Generator"
+      description="モダンなフロントエンドデザインで重宝する、Glassmorphismや極上かつ滑らかな影（Smooth Shadow）をビジュアル調整しながら生成します。"
+      icon={Layers}
+    >
       <div className="max-w-6xl mx-auto">
         {/* ヘッダー */}
         <div className="flex flex-col items-center text-center mb-10">
@@ -538,6 +543,6 @@ border-radius: 24px;`;
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }

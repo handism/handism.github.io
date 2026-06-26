@@ -1,5 +1,6 @@
 'use client';
 
+import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { useState, useMemo } from 'react';
 import { Eye, Copy, Check, Sparkles, RefreshCw, AlertCircle } from 'lucide-react';
 
@@ -200,7 +201,11 @@ export default function ColorContrast() {
   const passLargeAAA = contrastRatio >= 4.5;
 
   return (
-    <div className="min-h-screen bg-bg text-text py-12 px-4 md:px-8">
+    <ToolPageLayout
+      title="Color Contrast & Palette"
+      description="背景色と文字色のコントラスト比をWCAG 2.1基準に基づいて瞬時に検証し、同時に美しい調和パレットを作成します。"
+      icon={Eye}
+    >
       <div className="max-w-6xl mx-auto">
         {/* ヘッダー */}
         <div className="flex flex-col items-center text-center mb-10">
@@ -477,6 +482,6 @@ export default function ColorContrast() {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }

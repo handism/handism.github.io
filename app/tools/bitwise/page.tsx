@@ -1,5 +1,6 @@
 'use client';
 
+import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { useState } from 'react';
 import { ToggleLeft, Hash, Cpu, Sparkles, AlertCircle } from 'lucide-react';
 
@@ -112,7 +113,11 @@ export default function Bitwise() {
   const notAResult = ~valA >>> 0;
 
   return (
-    <div className="min-h-screen bg-bg text-text py-12 px-4 md:px-8">
+    <ToolPageLayout
+      title="Bitwise & Radix Converter"
+      description="2進数・8進数・10進数・16進数のリアルタイム双方向変換と、32bitの各ビット列のインタラクティブな編集、および基本的なビット演算を可視化します。"
+      icon={ToggleLeft}
+    >
       <div className="max-w-6xl mx-auto">
         {/* ヘッダー */}
         <div className="flex flex-col items-center text-center mb-10">
@@ -367,6 +372,6 @@ export default function Bitwise() {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   );
 }

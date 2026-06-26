@@ -3,7 +3,7 @@
 
 import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { siteConfig } from '@/src/config/site';
-import { Download, Maximize, Crop, FileImage } from 'lucide-react';
+import { Download, Maximize, FileImage } from 'lucide-react';
 import React, { useState, useCallback, useEffect } from 'react';
 import Cropper, { Area, Point } from 'react-easy-crop';
 

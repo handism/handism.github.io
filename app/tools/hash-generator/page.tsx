@@ -32,7 +32,11 @@ export default function HashGenerator() {
   };
 
   return (
-    <ToolPageLayout title="ハッシュジェネレーター" description="各種アルゴリズムでのハッシュ値を生成します" icon={Hash}>
+    <ToolPageLayout
+      title="ハッシュジェネレーター"
+      description="各種アルゴリズムでのハッシュ値を生成します"
+      icon={Hash}
+    >
       <div className="space-y-6">
         {/* 入力テキスト */}
         <div>

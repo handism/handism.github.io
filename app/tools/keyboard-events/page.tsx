@@ -1,7 +1,7 @@
 'use client';
 
 import ToolPageLayout from '@/src/components/ToolPageLayout';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Keyboard, Trash2, ShieldAlert, Sparkles } from 'lucide-react';
 
 interface KeyHistoryItem {
@@ -19,7 +19,7 @@ export default function KeyboardEvents() {
   const [currentEvent, setCurrentEvent] = useState<KeyHistoryItem | null>(null);
   const [history, setHistory] = useState<KeyHistoryItem[]>([]);
   const [activeCodes, setActiveCodes] = useState<Set<string>>(new Set());
-  const visualizerRef = useRef<HTMLDivElement>(null);
+  /* const visualizerRef = useRef<HTMLDivElement>(null); */
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

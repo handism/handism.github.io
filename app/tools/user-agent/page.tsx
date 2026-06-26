@@ -1,7 +1,7 @@
 'use client';
 
 import ToolPageLayout from '@/src/components/ToolPageLayout';
-import { ShieldAlert, Copy, RefreshCw, Cpu, Monitor, Check } from 'lucide-react';
+import { ShieldAlert, Copy, RefreshCw, Monitor, Check } from 'lucide-react';
 import { useState, useEffect, useMemo } from 'react';
 
 interface UAParseResult {

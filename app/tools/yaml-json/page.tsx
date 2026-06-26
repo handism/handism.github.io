@@ -43,7 +43,11 @@ export default function YamlJsonConverter() {
   };
 
   return (
-    <ToolPageLayout title="YAML ↔ JSON コンバータ" description="YAMLとJSONを相互に変換します" icon={FileJson}>
+    <ToolPageLayout
+      title="YAML ↔ JSON コンバータ"
+      description="YAMLとJSONを相互に変換します"
+      icon={FileJson}
+    >
       <div className="space-y-6">
         {/* ボタン */}
         <div className="flex flex-wrap gap-3">

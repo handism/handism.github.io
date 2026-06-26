@@ -54,7 +54,11 @@ export default function QrCodeGenerator() {
   };
 
   return (
-    <ToolPageLayout title="QR コード生成" description="テキストやURLからQRコードを生成します" icon={QrCode}>
+    <ToolPageLayout
+      title="QR コード生成"
+      description="テキストやURLからQRコードを生成します"
+      icon={QrCode}
+    >
       <div className="space-y-6">
         {/* 入力フィールド */}
         <div>

@@ -90,21 +90,6 @@ export default function SvgEditorPage() {
       description="ペーストしたSVGコードのプレビュー表示と、余分なメタデータや空白のクリーンアップ、カラー変更テストを行います。"
       icon={Palette}
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 border border-border rounded-lg bg-secondary text-text text-xs font-bold mb-3">
-            <Palette className="w-3.5 h-3.5" />
-            <span>Image Utilities</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-text tracking-tight">
-            SVG Path Visualizer & Optimizer
-          </h1>
-          <p className="text-text/80 text-sm md:text-base font-medium mt-2">
-            ペーストしたSVGコードのプレビュー表示と、余分なメタデータや空白のクリーンアップ、カラー変更テストを行います。
-          </p>
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* 左カラム: SVGコード入力 */}
         <div className="lg:col-span-6 flex flex-col gap-6">

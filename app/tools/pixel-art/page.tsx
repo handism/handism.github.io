@@ -186,21 +186,6 @@ export default function PixelArtPage() {
       description="グリッド上に自由にドット絵を描き、PNGやSVG形式として実スケールで保存できます。"
       icon={Palette}
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 border border-border rounded-lg bg-secondary text-text text-xs font-bold mb-3">
-            <Palette className="w-3.5 h-3.5" />
-            <span>Image Utilities</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-text tracking-tight">
-            Pixel Art Canvas
-          </h1>
-          <p className="text-text/80 text-sm md:text-base font-medium mt-2">
-            グリッド上に自由にドット絵を描き、PNGやSVG形式として実スケールで保存できます。
-          </p>
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* 左カラム: ツール・色選択 */}
         <div className="lg:col-span-4 space-y-6">

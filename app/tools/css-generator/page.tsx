@@ -74,19 +74,6 @@ border-radius: 24px;`;
       icon={Layers}
     >
       <div className="max-w-6xl mx-auto">
-        {/* ヘッダー */}
-        <div className="flex flex-col items-center text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold mb-4 border border-accent/20">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>CSS Effects</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3">CSS Generator</h1>
-          <p className="text-text/70 text-sm md:text-base max-w-xl">
-            モダンなフロントエンドデザインで重宝する、Glassmorphismや極上かつ滑らかな影（Smooth
-            Shadow）をビジュアル調整しながら生成します。
-          </p>
-        </div>
-
         {/* タブ切り替え */}
         <div className="flex justify-center mb-8">
           <div className="inline-flex p-1 bg-card/50 backdrop-blur border border-border rounded-2xl">

@@ -147,21 +147,6 @@ export default function CidrCalculatorPage() {
       description="IPアドレスとサブネットマスクの入力から、ネットワークレンジやホスト可能数を即座に割り出します。"
       icon={Binary}
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 border border-border rounded-lg bg-secondary text-text text-xs font-bold mb-3">
-            <Binary className="w-3.5 h-3.5" />
-            <span>Developer Utilities</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-text tracking-tight">
-            IP Subnet & CIDR Calculator
-          </h1>
-          <p className="text-text/80 text-sm md:text-base font-medium mt-2">
-            IPアドレスとサブネットマスクの入力から、ネットワークレンジやホスト可能数を即座に割り出します。
-          </p>
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* 左カラム: 入力パラメータ */}
         <div className="lg:col-span-5 space-y-6">

@@ -2,7 +2,7 @@
 
 import ToolPageLayout from '@/src/components/ToolPageLayout';
 import { useState, useMemo } from 'react';
-import { Eye, Copy, Check, Sparkles, RefreshCw, AlertCircle } from 'lucide-react';
+import { Eye, Copy, Check, RefreshCw, AlertCircle } from 'lucide-react';
 
 // HEXコードをRGBオブジェクトに変換
 const hexToRgb = (hex: string) => {
@@ -207,21 +207,6 @@ export default function ColorContrast() {
       icon={Eye}
     >
       <div className="max-w-6xl mx-auto">
-        {/* ヘッダー */}
-        <div className="flex flex-col items-center text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold mb-4 border border-accent/20">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Design Accessibility</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3">
-            Color Contrast & Palette
-          </h1>
-          <p className="text-text/70 text-sm md:text-base max-w-xl">
-            背景色と文字色のコントラスト比をWCAG
-            2.1基準に基づいて瞬時に検証し、同時に美しい調和パレットを作成します。
-          </p>
-        </div>
-
         {/* コントロール・メインエリア */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* 左側: 設定＆ステータス (5列) */}

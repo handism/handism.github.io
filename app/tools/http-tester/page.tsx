@@ -131,21 +131,6 @@ export default function HttpTesterPage() {
       description="ブラウザのFetch APIを用いて、各種APIへのリクエストを送信してレスポンスを確認します。"
       icon={Send}
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 border border-border rounded-lg bg-secondary text-text text-xs font-bold mb-3">
-            <Send className="w-3.5 h-3.5" />
-            <span>Developer Utilities</span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-text tracking-tight">
-            HTTP Request Tester
-          </h1>
-          <p className="text-text/80 text-sm md:text-base font-medium mt-2">
-            ブラウザのFetch APIを用いて、各種APIへのリクエストを送信してレスポンスを確認します。
-          </p>
-        </div>
-      </div>
-
       {/* CORS注意喚起アラート */}
       <div className="p-4 bg-amber-50 dark:bg-amber-950/20 border-3 border-amber-500 rounded-2xl flex items-start gap-3 mb-8">
         <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />

@@ -25,7 +25,10 @@ export default function JsonToTsPage() {
       return { outputCode: generated, error: '' };
     } catch (e: unknown) {
       const errorMessage = e instanceof Error ? e.message : String(e);
-      return { outputCode: '', error: `JSON解析エラー: ${errorMessage}` };
+      return {
+        outputCode: '',
+        error: `JSON解析エラー: ${errorMessage}`,
+      };
     }
   }, [inputJson, rootName, outputFormat]);
 

@@ -46,12 +46,15 @@ export default function CopyButton({
 }: CopyButtonProps) {
   const { copied, copy } = useCopyToClipboard();
 
+  const currentAriaLabel = copied ? copiedLabel || 'コピーしました' : label || 'コピー';
+
   return (
     <button
       type="button"
       onClick={() => copy(value)}
       disabled={disabled}
       title={title}
+      aria-label={currentAriaLabel}
       className={className}
     >
       {copied ? (

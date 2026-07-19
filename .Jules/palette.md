@@ -6,3 +6,6 @@
 ## 2026-07-11 - Add missing aria-label to dynamically created buttons
 **Learning:** Buttons created dynamically via DOM scripts (like `document.createElement('button')` in `CopyButtonScript.tsx`) can easily miss accessibility attributes that are typically standard on JSX components. Since the button text was "Copy" but the site is localized in Japanese, screen readers weren't getting an optimal experience.
 **Action:** Always verify that interactive elements created dynamically via DOM APIs have appropriate `aria-label` attributes set using `.setAttribute()`, and ensure the text aligns with the site's localization.
+## 2024-05-18 - [Add fallback ARIA label to generic icon-only buttons]
+**Learning:** Generic reusable components that render buttons with an option to hide visible text (e.g., passing `label=""` to `<CopyButton>`) may easily lose their accessible name, causing screen readers to announce them incorrectly.
+**Action:** Always ensure an internal fallback `aria-label` is implemented in such generic components to maintain screen reader context, resolving it dynamically based on the current component state if needed.

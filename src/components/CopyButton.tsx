@@ -11,6 +11,8 @@ type CopyButtonProps = {
   label?: string;
   /** コピー後のラベル */
   copiedLabel?: string;
+  /** スクリーンリーダー用のラベル。指定しない場合は label/copiedLabel またはフォールバック値が使われる */
+  ariaLabel?: string;
   className?: string;
   /** アイコンを表示するかどうか（テキストのみのボタン用） */
   showIcon?: boolean;
@@ -43,8 +45,11 @@ export default function CopyButton({
   copiedLabelClassName,
   disabled = false,
   title,
+  ariaLabel,
 }: CopyButtonProps) {
   const { copied, copy } = useCopyToClipboard();
+
+  const resolvedAriaLabel = ariaLabel || (copied ? copiedLabel || 'コピーしました' : label || 'コピー');
 
   return (
     <button
@@ -53,6 +58,7 @@ export default function CopyButton({
       disabled={disabled}
       title={title}
       className={className}
+      aria-label={resolvedAriaLabel}
     >
       {copied ? (
         <>

@@ -61,3 +61,6 @@ node_modules/
 .claude/
 .claude.json
 .mcp.json
+
+# Claude Code PR specific path mentioned in job log
+.claude-pr/

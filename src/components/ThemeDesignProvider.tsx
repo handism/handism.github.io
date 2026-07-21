@@ -6,12 +6,14 @@ import {
   THEME_STORAGE_KEY,
   themeConfig,
   type ThemeId,
+  EFFECTS_STORAGE_KEY,
+} from '@/src/config/themes';
+import {
   type LayoutId,
   DEFAULT_LAYOUT,
   LAYOUT_STORAGE_KEY,
   layoutConfig,
-  EFFECTS_STORAGE_KEY,
-} from '@/src/config/site';
+} from '@/src/config/layout';
 import { useIsClient } from '@/src/hooks/useIsClient';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
@@ -146,12 +148,7 @@ export function ThemeDesignProvider({ children }: { children: React.ReactNode })
     [currentTheme, setTheme, currentLayout, setLayout, effectsEnabled, setEffectsEnabled]
   );
 
-  return (
-    <ThemeDesignContext.Provider value={value}>
-      <link rel="stylesheet" href={`/themes/theme-${currentTheme}.css`} precedence="default" />
-      {children}
-    </ThemeDesignContext.Provider>
-  );
+  return <ThemeDesignContext.Provider value={value}>{children}</ThemeDesignContext.Provider>;
 }
 
 /**

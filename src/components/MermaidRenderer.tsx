@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useThemeDesign } from '@/src/components/ThemeDesignProvider';
+import { loadMermaid } from '@/src/lib/mermaid-loader';
 
 /**
  * クライアントサイドで Mermaid 記法を解析し、SVG図解を動的にレンダリングするコンポーネント。
@@ -21,7 +22,7 @@ export default function MermaidRenderer() {
       if (elements.length === 0) return;
 
       try {
-        const mermaid = (await import('mermaid')).default;
+        const mermaid = await loadMermaid();
 
         // ダークモードかどうかの判定 (next-themes や global CSS 変数の data-theme に準拠)
         const isDark =
@@ -45,6 +46,18 @@ export default function MermaidRenderer() {
         const nodesToRender: HTMLElement[] = [];
         elements.forEach((el) => {
           const htmlEl = el as HTMLElement;
+
+          // 親コンテナとスケルトン要素を取得
+          const container = htmlEl.closest('.mermaid-container');
+          const skeleton = container?.querySelector('.mermaid-skeleton');
+
+          // レンダリング開始時の初期化：非表示にし、スケルトンを表示
+          htmlEl.classList.add('opacity-0');
+          if (skeleton) {
+            skeleton.classList.remove('opacity-0');
+            skeleton.classList.add('animate-pulse');
+          }
+
           // すでに描画されている場合、元のソースコードを復元する
           let src = htmlEl.getAttribute('data-mermaid-src');
           if (!src) {
@@ -61,8 +74,30 @@ export default function MermaidRenderer() {
         await mermaid.run({
           nodes: nodesToRender,
         });
+
+        // 描画完了後のフェードイン制御
+        nodesToRender.forEach((htmlEl) => {
+          htmlEl.classList.remove('opacity-0');
+          const container = htmlEl.closest('.mermaid-container');
+          const skeleton = container?.querySelector('.mermaid-skeleton');
+          if (skeleton) {
+            skeleton.classList.add('opacity-0');
+            skeleton.classList.remove('animate-pulse');
+          }
+        });
       } catch (err) {
         console.error('Mermaid render error:', err);
+        // エラー時もスケルトンを消して非表示を解除
+        elements.forEach((el) => {
+          const htmlEl = el as HTMLElement;
+          htmlEl.classList.remove('opacity-0');
+          const container = htmlEl.closest('.mermaid-container');
+          const skeleton = container?.querySelector('.mermaid-skeleton');
+          if (skeleton) {
+            skeleton.classList.add('opacity-0');
+            skeleton.classList.remove('animate-pulse');
+          }
+        });
       }
     };
 

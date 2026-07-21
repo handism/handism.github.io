@@ -1,12 +1,13 @@
 // src/components/RelatedPosts.tsx
-import type { PostMeta } from '@/src/types/post';
+import { formatDate } from '@/src/lib/utils';
+import type { PostSummary } from '@/src/types/post';
 import { Calendar, Folder } from 'lucide-react';
 import Link from 'next/link';
 
 /**
  * 関連記事一覧コンポーネント。
  */
-export default function RelatedPosts({ posts }: { posts: PostMeta[] }) {
+export default function RelatedPosts({ posts }: { posts: PostSummary[] }) {
   if (posts.length === 0) return null;
 
   return (
@@ -26,11 +27,7 @@ export default function RelatedPosts({ posts }: { posts: PostMeta[] }) {
               {post.date && (
                 <time dateTime={post.date.toISOString()} className="inline-flex items-center gap-1">
                   <Calendar className="h-3 w-3" />
-                  {post.date.toLocaleDateString('ja-JP', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
+                  {formatDate(post.date, { year: 'numeric', month: 'short', day: 'numeric' })}
                 </time>
               )}
               <span className="inline-flex items-center gap-1">

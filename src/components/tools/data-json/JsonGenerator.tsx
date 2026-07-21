@@ -2,8 +2,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus, Trash2, Copy, Check, Download, Play } from 'lucide-react';
-import { useCopyToClipboard } from '@/src/hooks/useCopyToClipboard';
+import { Plus, Trash2, Download, Play } from 'lucide-react';
+import CopyButton from '@/src/components/CopyButton';
 
 type FieldType = 'id' | 'uuid' | 'name' | 'email' | 'date' | 'boolean' | 'number' | 'string';
 
@@ -69,7 +69,6 @@ export default function JsonGenerator() {
 
   const [count, setCount] = useState(10);
   const [generatedJson, setGeneratedJson] = useState<string>('');
-  const { copied, copy } = useCopyToClipboard();
 
   // フィールドの追加
   const addField = () => {
@@ -145,11 +144,6 @@ export default function JsonGenerator() {
     }
 
     setGeneratedJson(JSON.stringify(dataList, null, 2));
-  };
-
-  const handleCopy = () => {
-    if (!generatedJson) return;
-    copy(generatedJson);
   };
 
   const handleDownload = () => {
@@ -251,6 +245,7 @@ export default function JsonGenerator() {
                   onClick={() => removeField(field.id)}
                   className="p-1.5 text-red-500 border border-transparent hover:border-red-500 rounded bg-card transition-colors cursor-pointer"
                   title="削除"
+                  aria-label="フィールドを削除"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -287,17 +282,12 @@ export default function JsonGenerator() {
             </h4>
             {generatedJson && (
               <div className="flex gap-2">
-                <button
-                  onClick={handleCopy}
+                <CopyButton
+                  value={generatedJson}
+                  label="コピー"
+                  copiedLabel="コピー済"
                   className="theme-btn p-1.5 text-[10px] flex items-center gap-1 cursor-pointer font-bold"
-                >
-                  {copied ? (
-                    <Check className="w-3.5 h-3.5 text-accent" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                  <span>{copied ? 'コピー済' : 'コピー'}</span>
-                </button>
+                />
                 <button
                   onClick={handleDownload}
                   className="theme-btn p-1.5 text-[10px] flex items-center gap-1 cursor-pointer font-bold"

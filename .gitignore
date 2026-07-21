@@ -56,3 +56,8 @@ node_modules/
 
 # AWS Best Practices auto-generated public assets
 /public/aws-best-practices/
+
+# Claude Code
+.claude/
+.claude.json
+.mcp.json

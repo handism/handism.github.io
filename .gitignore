@@ -57,10 +57,9 @@ node_modules/
 # AWS Best Practices auto-generated public assets
 /public/aws-best-practices/
 
-# Claude Code
+# AI tools
 .claude/
 .claude.json
-.mcp.json
-
-# Claude Code PR specific path mentioned in job log
 .claude-pr/
+.mcp.json
+.Jules/

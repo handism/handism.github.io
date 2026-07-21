@@ -12,3 +12,6 @@
 ## 2026-07-13 - Add aria-live to dynamically changing text buttons
 **Learning:** Buttons whose text or state changes dynamically after interaction (e.g., from "Copy" to "Copied!") may not convey this visual feedback to screen reader users immediately. Adding `aria-live="polite"` ensures that screen readers announce these dynamic state changes gracefully.
 **Action:** When implementing buttons or elements that provide dynamic text feedback upon interaction, verify that `aria-live="polite"` (or another appropriate aria-live value) is used so that the state change is accessible.
+## 2026-07-14 - Accessibility for visually hidden stateful elements
+**Learning:** For elements that fade in and out via CSS transitions (like a Scroll-to-Top button changing opacity based on scroll position), merely applying `opacity-0` and `pointer-events-none` is insufficient for accessibility. Even if visually hidden, the element remains in the DOM and can receive keyboard focus, confusing screen reader and keyboard users.
+**Action:** When conditionally hiding an interactive element using CSS transitions rather than unmounting it, always ensure it is paired with dynamic accessibility attributes (e.g., `tabIndex={isVisible ? 0 : -1}` and `aria-hidden={!isVisible}`) so that it is properly removed from the focus order and accessibility tree when not visible.

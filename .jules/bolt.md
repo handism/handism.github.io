@@ -1,0 +1,3 @@
+## 2024-07-21 - Moving Scroll Observer State Down
+**Learning:** We had an IntersectionObserver (`useTocObserver`) attached in parent layout components (`Sidebar` and `LearningLayout`). This caused the entire layout component to re-render every time the user scrolled past a new section header, even though only the `TocList` component visually cared about the `activeId`.
+**Action:** Always place scroll/intersection observer hooks as close to the UI consumer as possible. Moving `useTocObserver` directly into the `TocList` component itself prevents expensive layout re-renders on scroll, resulting in smoother scroll performance.

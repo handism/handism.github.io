@@ -41,7 +41,7 @@ function MermaidPreview({ chartCode }: { chartCode: string }) {
           mermaidLib.initialize({
             startOnLoad: false,
             theme: 'neutral',
-            securityLevel: 'strict',
+            securityLevel: 'sandbox',
             flowchart: {
               useMaxWidth: true,
               htmlLabels: true,

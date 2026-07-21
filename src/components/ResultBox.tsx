@@ -18,6 +18,7 @@ export default function ResultBox({ value, label = '生成結果', className = '
         <span className="text-xs font-bold text-text/70">{label}</span>
         <button
           onClick={() => copy(value)}
+          aria-live="polite"
           className="theme-btn px-3 py-1.5 text-xs flex items-center gap-1.5 hover:text-accent transition-colors"
         >
           {copied ? (

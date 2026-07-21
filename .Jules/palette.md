@@ -6,3 +6,6 @@
 ## 2026-07-11 - Add missing aria-label to dynamically created buttons
 **Learning:** Buttons created dynamically via DOM scripts (like `document.createElement('button')` in `CopyButtonScript.tsx`) can easily miss accessibility attributes that are typically standard on JSX components. Since the button text was "Copy" but the site is localized in Japanese, screen readers weren't getting an optimal experience.
 **Action:** Always verify that interactive elements created dynamically via DOM APIs have appropriate `aria-label` attributes set using `.setAttribute()`, and ensure the text aligns with the site's localization.
+## 2026-07-13 - Add aria-live to dynamically changing text buttons
+**Learning:** Buttons whose text or state changes dynamically after interaction (e.g., from "Copy" to "Copied!") may not convey this visual feedback to screen reader users immediately. Adding `aria-live="polite"` ensures that screen readers announce these dynamic state changes gracefully.
+**Action:** When implementing buttons or elements that provide dynamic text feedback upon interaction, verify that `aria-live="polite"` (or another appropriate aria-live value) is used so that the state change is accessible.

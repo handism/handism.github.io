@@ -1,0 +1,21 @@
+---
+import '../styles/global.css';
+interface Props { title: string; theme?: string; description?: string }
+const { title, theme = 'chooser', description = 'handism — 好奇心を、動くものに。公開GitHubプロジェクトを紹介するポートフォリオ。' } = Astro.props;
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content={theme === 'editorial' || theme === 'chooser' ? '#f3f1e9' : '#111411'} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class={theme}>
+    <a class="skip-link" href="#main">本文へ移動</a>
+    <slot />
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>

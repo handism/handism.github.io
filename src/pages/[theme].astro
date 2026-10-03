@@ -1,0 +1,9 @@
+---
+import Portfolio from '../components/Portfolio.astro';
+import { themes } from '../data/projects';
+export function getStaticPaths() {
+  return themes.map(concept => ({ params: { theme: concept.id }, props: { concept } }));
+}
+const { concept } = Astro.props;
+---
+<Portfolio concept={concept} />

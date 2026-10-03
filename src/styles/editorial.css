@@ -37,7 +37,7 @@
   border-bottom: 1px solid var(--line);
 }
 .editorial .hero-topline {
-  font-size: 9px;
+  font-size: 10px;
 }
 .editorial .hero-topline .status-dot {
   display: none;
@@ -137,7 +137,7 @@
   margin: 0;
   order: -1;
   letter-spacing: 0.12em;
-  font-size: 9px;
+  font-size: 10px;
 }
 .editorial .project h3 {
   font-size: clamp(28px, 3vw, 44px);
@@ -174,4 +174,104 @@
   font-family: Georgia, serif;
   font-style: italic;
   font-size: clamp(50px, 10vw, 145px);
+}
+
+@media (min-width: 1600px) {
+  .editorial .hero-copy {
+    padding-top: 145px;
+  }
+}
+@media (max-width: 1050px) {
+  .editorial .hero h1 {
+    font-size: 86px;
+  }
+  .editorial .hero .art-hero {
+    left: 49%;
+    opacity: 0.6;
+  }
+}
+@media (max-width: 700px) {
+  .editorial .site-header {
+    padding: 25px 6vw;
+  }
+  .editorial .site-header nav {
+    margin-left: auto;
+  }
+  .editorial .wordmark {
+    font-size: 25px;
+  }
+  .editorial .hero {
+    min-height: 910px;
+    height: auto;
+  }
+  .editorial .hero-copy {
+    padding-top: 55px;
+  }
+  .editorial .hero h1 {
+    font-size: clamp(48px, 11vw, 76px);
+    letter-spacing: -0.07em;
+  }
+  .editorial .hero-jp {
+    font-size: 17px;
+    margin-top: 30px;
+  }
+  .editorial .hero .art-hero {
+    inset: 435px -4% 30px 5%;
+    width: 99%;
+    opacity: 1;
+  }
+  .editorial .hero .flower {
+    width: 70%;
+    left: 15%;
+  }
+  .editorial-stamp {
+    right: 8%;
+    bottom: 58px;
+    width: 70px;
+    height: 70px;
+    font-size: 10px;
+  }
+  .editorial .section-heading h2 {
+    font-size: 42px;
+  }
+  .editorial .section-heading > p {
+    padding-top: 0;
+  }
+  .editorial .project {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+  }
+  .editorial .project:nth-child(even) .project-visual {
+    order: 0;
+  }
+  .editorial .project-visual {
+    aspect-ratio: 1.25;
+  }
+  .editorial .project h3 {
+    font-size: 32px;
+  }
+  .editorial .project-category {
+    display: block;
+  }
+  .editorial .project-ja {
+    font-size: 15px;
+    margin-top: 20px;
+  }
+  .editorial .project-description {
+    max-width: none;
+  }
+  .editorial .project-title {
+    gap: 8px 13px;
+  }
+  .editorial .project-more {
+    margin-top: 10px;
+  }
+  .editorial .all-projects {
+    margin-top: 0;
+  }
+  .editorial .site-footer > a {
+    font-size: 55px;
+  }
 }

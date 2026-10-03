@@ -1,4 +1,4 @@
-export {};
+import { formatProjectCount } from '../utils/format';
 
 const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 const motionToggle =
@@ -67,8 +67,7 @@ filters.forEach((button) =>
       }
     });
     const result = document.querySelector('.result-count');
-    if (result)
-      result.textContent = `${count} PROJECT${count === 1 ? '' : 'S'}`;
+    if (result) result.textContent = formatProjectCount(count);
   }),
 );
 

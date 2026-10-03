@@ -9,8 +9,10 @@
     "preview": "astro preview --host 127.0.0.1",
     "check": "astro check",
     "test:browser": "playwright test",
-    "format": "prettier --write src",
-    "format:check": "prettier --check src"
+    "format": "prettier --write src tests scripts playwright.config.ts astro.config.mjs",
+    "format:check": "prettier --check src tests scripts playwright.config.ts astro.config.mjs",
+    "capture": "node scripts/capture.mjs",
+    "og-image": "node scripts/og-image.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

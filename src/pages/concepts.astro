@@ -1,18 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
 import Art from '../components/Art.astro';
+import { githubUrl } from '../data/links';
 import { themes } from '../data/themes';
 import { projectCount } from '../data/projects';
 import MotionToggle from '../components/MotionToggle.astro';
 ---
 
-<Base title="handism — Three ways to tell a story">
+<Base title="handism — Three ways to tell a story" noindex>
   <header class="chooser-nav">
     <a class="wordmark" href="/">
       handism<span>®</span>
     </a>
     <span class="mono">PORTFOLIO / DESIGN STUDIES</span>
-    <a href="https://github.com/handism" target="_blank" rel="noreferrer">
+    <a href={githubUrl} target="_blank" rel="noreferrer">
       GitHub ↗
     </a>
   </header>

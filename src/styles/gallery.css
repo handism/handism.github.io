@@ -54,7 +54,7 @@
 }
 .gallery .hero-copy .eyebrow {
   color: #bdaaca;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.26em;
 }
 .gallery .hero-jp {
@@ -89,7 +89,7 @@
   color: #121018;
 }
 .gallery .hero-bottom {
-  font-size: 8px;
+  font-size: 10px;
 }
 .gallery .section-heading {
   display: block;
@@ -161,7 +161,7 @@
 .gallery .project-stack span {
   border: 0;
   padding: 0 10px 0 0;
-  font-size: 9px;
+  font-size: 10px;
 }
 .gallery .project:last-child {
   margin-bottom: 0;
@@ -183,4 +183,93 @@
 }
 .gallery .site-footer .eyebrow {
   color: var(--muted);
+}
+
+@media (min-width: 1600px) {
+  .gallery .hero-copy {
+    padding-top: 165px;
+  }
+}
+@media (max-width: 1050px) {
+  .gallery .hero h1 {
+    font-size: 90px;
+  }
+  .gallery .hero .portal {
+    width: 95%;
+  }
+}
+@media (max-width: 700px) {
+  .gallery .hero {
+    min-height: 820px;
+    height: 100svh;
+    max-height: 1000px;
+    padding-top: 118px;
+  }
+  .gallery .hero-topline {
+    font-size: 10px;
+  }
+  .gallery .hero-copy {
+    padding-top: 125px;
+  }
+  .gallery .hero h1 {
+    font-size: clamp(44px, 10vw, 70px);
+  }
+  .gallery .hero-copy .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+  .gallery .hero-jp {
+    font-size: 14px;
+    margin-top: 25px;
+  }
+  .gallery .hero-description {
+    font-size: 10px;
+  }
+  .gallery .hero .art-hero {
+    inset: 80px -40% 20px;
+    width: 180%;
+    opacity: 0.8;
+  }
+  .gallery .hero .portal {
+    width: 100%;
+  }
+  .gallery .hero-cta {
+    font-size: 10px;
+  }
+  .gallery .section-heading h2 {
+    font-size: 40px;
+    max-width: none;
+  }
+  .gallery .filter-row {
+    margin: 30px 0;
+  }
+  .gallery .project {
+    width: 100%;
+    margin-bottom: 65px;
+  }
+  .gallery .project-visual {
+    aspect-ratio: 1.15;
+  }
+  .gallery .project-content {
+    display: block;
+  }
+  .gallery .project-title {
+    gap: 10px;
+  }
+  .gallery .project h3 {
+    font-size: 28px;
+  }
+  .gallery .project-ja {
+    margin-top: 16px;
+    font-size: 13px;
+  }
+  .gallery .project-description {
+    margin-top: 10px;
+  }
+  .gallery .project-stack {
+    margin-top: 18px;
+  }
+  .gallery .site-footer > a {
+    font-size: 54px;
+  }
 }

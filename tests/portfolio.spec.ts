@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-test('selected editorial homepage works without demo controls', async ({ page }) => {
+test('selected editorial homepage works without demo controls', async ({
+  page,
+}) => {
   const errors: string[] = [];
-  page.on('pageerror', error => errors.push(error.message));
+  page.on('pageerror', (error) => errors.push(error.message));
   const response = await page.goto('/');
   expect(response?.status()).toBe(200);
   await expect(page.locator('body')).toHaveClass(/editorial/);
@@ -16,14 +18,20 @@ test('selected editorial homepage works without demo controls', async ({ page })
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
   await page.setViewportSize({ width: 375, height: 812 });
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
   expect(errors).toEqual([]);
 });
 
 for (const theme of ['lab', 'editorial', 'gallery']) {
-  test(`${theme}: filters, details, keyboard and concept switching`, async ({ page }) => {
+  test(`${theme}: filters, details, keyboard and concept switching`, async ({
+    page,
+  }) => {
     const errors: string[] = [];
-    page.on('pageerror', error => errors.push(error.message));
+    page.on('pageerror', (error) => errors.push(error.message));
     await page.goto(`/${theme}/`);
     await expect(page.locator('h1')).toBeVisible();
     await page.getByRole('button', { name: 'AI', exact: true }).click();
@@ -32,7 +40,10 @@ for (const theme of ['lab', 'editorial', 'gallery']) {
     const open = page.getByRole('button', { name: 'Mini Brainの詳細を見る' });
     await open.click();
     await expect(page.getByRole('dialog')).toBeVisible();
-    await expect(page.getByRole('dialog').getByRole('link')).toHaveAttribute('href', 'https://github.com/handism/mini-brain');
+    await expect(page.getByRole('dialog').getByRole('link')).toHaveAttribute(
+      'href',
+      'https://github.com/handism/mini-brain',
+    );
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(open).toBeFocused();
@@ -42,7 +53,10 @@ for (const theme of ['lab', 'editorial', 'gallery']) {
     await expect(page.locator('body')).toHaveClass(/motion-paused/);
     await page.getByRole('button', { name: '動きを再開' }).click();
     await expect(page.locator('body')).not.toHaveClass(/motion-paused/);
-    await page.getByRole('navigation', { name: 'デザインデモの切り替え' }).getByRole('link', { name: '3案の比較ページ' }).click();
+    await page
+      .getByRole('navigation', { name: 'デザインデモの切り替え' })
+      .getByRole('link', { name: '3案の比較ページ' })
+      .click();
     await expect(page.locator('.concept')).toHaveCount(3);
     expect(errors).toEqual([]);
   });
@@ -51,10 +65,16 @@ for (const theme of ['lab', 'editorial', 'gallery']) {
     await page.setViewportSize({ width: 375, height: 812 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`/${theme}/`);
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
     await expect(page.locator('.motion-toggle')).toBeDisabled();
     await expect(page.locator('body')).toHaveClass(/motion-paused/);
-    await page.getByRole('button', { name: 'Sauna Simulatorの詳細を見る' }).click();
+    await page
+      .getByRole('button', { name: 'Sauna Simulatorの詳細を見る' })
+      .click();
     await expect(page.getByRole('dialog')).toBeVisible();
     await page.getByRole('button', { name: '詳細を閉じる' }).click();
     await expect(page.getByRole('dialog')).toHaveCount(0);
@@ -62,7 +82,9 @@ for (const theme of ['lab', 'editorial', 'gallery']) {
   });
 }
 
-test('comparison page links to every design at desktop and mobile widths', async ({ page }) => {
+test('comparison page links to every design at desktop and mobile widths', async ({
+  page,
+}) => {
   await page.goto('/concepts/');
   const flower = page.locator('.concept-editorial .flower');
   await page.getByRole('button', { name: '動きを停止', exact: true }).click();
@@ -80,5 +102,9 @@ test('comparison page links to every design at desktop and mobile widths', async
     await page.goto('/concepts/');
   }
   await page.setViewportSize({ width: 375, height: 812 });
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
 });

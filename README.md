@@ -19,7 +19,7 @@ npm ci
 npm run dev -- --port 4321
 ```
 
-http://localhost:4321/ を開きます。各デモ下部のバーから別案へ移動できます。
+http://localhost:4321/ を開きます。トップページには切り替えバーがありません。保存した3案（`/lab/` など）では、ページ下部のバーから別案や比較ページへ移動できます。
 
 ```sh
 npm run check
@@ -33,7 +33,7 @@ npm run preview -- --port 4322
 
 公開先: https://handism.github.io/
 
-`.github/workflows/deploy.yml` が`main`へのpush時にNode.js 24で依存関係のインストール、型チェック、静的ビルドを実行し、成功した成果物をGitHub Pagesへデプロイします。GitHubのSettings → Pages → SourceはGitHub Actionsを選択します。Actions画面から手動での再デプロイもできます。
+`.github/workflows/deploy.yml` が`main`へのpush時にNode.js 24で依存関係のインストール、整形チェック、型チェック、静的ビルド、Playwrightのブラウザテスト（同梱Chromium）を実行し、すべて成功した成果物をGitHub Pagesへデプロイします。プルリクエストでは同じ検証だけを実行し、デプロイはしません。GitHubのSettings → Pages → SourceはGitHub Actionsを選択します。Actions画面から手動での再デプロイもできます。
 
 公開サイトでの動作確認:
 
@@ -52,17 +52,22 @@ PLAYWRIGHT_BASE_URL=https://handism.github.io npm run test:browser
 
 コンテンツは2026-10-03に確認した公開READMEをもとに、`src/data/projects.ts` に手動でまとめています。GitHubの自動同期や活動履歴の取得は未実装です。キャッチコピーと自己紹介は提案用の文案です。
 
-作品ビジュアルはCSSで制作したコンセプトイラストで、実際のアプリのスクリーンショットではありません。画像生成・外部画像は使用していません。フォントはGoogle Fontsから読み込み、取得できない場合はシステムフォントにフォールバックします。
+作品ビジュアルはCSSで制作したコンセプトイラストで、実際のアプリのスクリーンショットではありません。画像生成・外部画像は使用していません。フォントは`src/layouts/Base.astro`の`<link>`でGoogle Fontsから読み込み、取得できない場合はシステムフォントにフォールバックします。
+
+検索エンジン向けに、各ページへcanonicalとOGP（`public/og.png`）を設定しています。保存した3案と比較ページは`noindex`で、トップページだけを検索対象にしています。
 
 ## 検証
 
 ```sh
 npm run build
 npm run test:browser
-node scripts/capture.mjs
+npm run capture
+npm run og-image
 ```
 
-ブラウザテストはインストール済みGoogle Chromeを使用します。Playwrightが4322ポートに本番ビルドのプレビューを起動します。撮影スクリプトは4321ポートの開発サーバーを使い、`/tmp/handism-portfolio-previews/` にPC・スマホの画像を保存します。
+ブラウザテストはローカルではインストール済みGoogle Chrome、CI（`CI`環境変数あり）ではPlaywright同梱のChromiumを使用します。Playwrightが4322ポートに本番ビルドのプレビューを起動します。
+
+撮影スクリプトとOGP画像スクリプトは、4321ポートで起動した開発サーバーまたはプレビューを使います（`BASE_URL`で変更可）。撮影スクリプトはOSの一時ディレクトリの`handism-portfolio-previews/`にPC・スマホの画像を保存します（`CAPTURE_DIR`で変更可）。`npm run og-image`はトップページを1200×630で撮影し、`public/og.png`を更新します。
 
 自動テストは3案のフィルター・ダイアログ・キーボード・モーション設定・375px幅での横はみ出し・比較ページへの移動と、比較ページのアニメーション停止・再開・モーション低減設定への追従を確認します。実機スマートフォンやSafariの動作確認は含みません。
 
@@ -76,13 +81,15 @@ node scripts/capture.mjs
 - `src/data/themes.ts`: テーマ情報、イラストの種類、テーマ別の見出し・文言。トップページは `getTheme('editorial')` で選択します。
 - `src/data/expertise.ts`: About欄の技術と、対応するプロジェクト。
 - `src/data/art.ts`: コンセプトイラストの種類（`Art.astro` の `type` に使う型）。
+- `src/data/links.ts`: GitHubのURL。
+- `src/utils/format.ts`: ビルド時の表示と絞り込みスクリプトで共有する件数表示。
 - `src/components/ProjectCard.astro` / `ProjectDialog.astro`: 作品一覧と詳細。
 - `src/components/MotionToggle.astro`: トップ・各デモ・比較ページ共通の停止ボタン。
-- `src/styles/global.css`: CSSの読み込み口。共通、イラスト、テーマ、操作部品、比較ページ、アニメーション、レスポンシブの順序を維持しています。
+- `src/styles/global.css`: CSSの読み込み口。共通、イラスト、テーマ、操作部品、比較ページ、アニメーション、レスポンシブの順序を維持しています。テーマ・比較ページ固有のメディアクエリは各テーマのCSSに、モーション低減の指定は`animations.css`に、共通のレスポンシブ指定は`responsive.css`に置いています。
 
 ```sh
 npm run format
 npm run format:check
 ```
 
-整形にはPrettierとAstro用プラグインを使用します。
+整形にはPrettierとAstro用プラグインを使用します。対象は`src`、`tests`、`scripts`と設定ファイルです。

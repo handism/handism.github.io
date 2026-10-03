@@ -1,5 +1,6 @@
 ---
 import Art from './Art.astro';
+import { repositoryUrl } from '../data/links';
 import type { Project } from '../data/projects';
 interface Props {
   project: Project;
@@ -40,7 +41,7 @@ const { project } = Astro.props;
         )}
         <a
           class="dialog-link"
-          href={`https://github.com/handism/${project.id}`}
+          href={repositoryUrl(project.id)}
           target="_blank"
           rel="noreferrer"
         >

@@ -1,0 +1,45 @@
+---
+import Art from './Art.astro';
+import type { Project } from '../data/projects';
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+---
+
+<article class="project reveal" data-category={project.filter}>
+  <button
+    class="project-visual"
+    type="button"
+    data-project={project.id}
+    aria-label={`${project.title}の詳細を見る`}
+  >
+    <Art type={project.art} />
+    <span class="visual-index mono">
+      {project.number} / {project.category.toUpperCase()}
+    </span>
+    <span class="visual-open">↗</span>
+    <span class="visual-caption">CONCEPT VISUAL</span>
+  </button>
+  <div class="project-content">
+    <div class="project-title">
+      <span class="project-number mono">/{project.number}</span>
+      <h3>
+        <button type="button" data-project={project.id}>
+          {project.title}
+        </button>
+      </h3>
+      <span class="project-category mono">{project.category}</span>
+    </div>
+    <p class="project-ja">{project.ja}</p>
+    <p class="project-description">{project.description}</p>
+    <div class="project-stack">
+      {project.stack.slice(0, 3).map((tech) => (
+        <span>{tech}</span>
+      ))}
+    </div>
+    <button class="project-more" type="button" data-project={project.id}>
+      Explore project <span>↗</span>
+    </button>
+  </div>
+</article>

@@ -1,5 +1,6 @@
 ---
 import Portfolio from '../components/Portfolio.astro';
-import { themes } from '../data/projects';
+import { getTheme } from '../data/themes';
 ---
-<Portfolio concept={themes[1]} demo={false} />
+
+<Portfolio concept={getTheme('editorial')} demo={false} />

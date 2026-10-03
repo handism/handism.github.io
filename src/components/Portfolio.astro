@@ -1,44 +1,286 @@
 ---
 import Base from '../layouts/Base.astro';
 import Art from '../components/Art.astro';
-import { projects, themes } from '../data/projects';
-interface Props { concept: (typeof themes)[number]; demo?: boolean }
+import {
+  projects,
+  projectCount,
+  projectCountLabel,
+  projectFilters,
+} from '../data/projects';
+import { themes, type Theme } from '../data/themes';
+import ProjectCard from './ProjectCard.astro';
+import ProjectDialog from './ProjectDialog.astro';
+import MotionToggle from './MotionToggle.astro';
+interface Props {
+  concept: Theme;
+  demo?: boolean;
+}
 const { concept, demo = true } = Astro.props;
 const type = concept.id;
 ---
+
 <Base title={`handism — ${concept.name}`} theme={type}>
-  <header class="site-header"><a class="wordmark" href={demo ? `/${type}/` : '/'}>handism<span>{type === 'editorial' ? '®' : '.'}</span></a><nav aria-label="メインナビゲーション"><a href="#work">Work <sup>04</sup></a><a href="#about">About</a><a href="https://github.com/handism" target="_blank" rel="noreferrer">GitHub ↗</a></nav><span class="header-note mono">{type === 'lab' ? 'INDEPENDENT DEVELOPER' : type === 'editorial' ? 'THE PORTFOLIO ISSUE / 2026' : 'A COLLECTION OF CURIOSITIES'}</span></header>
+  <header class="site-header">
+    <a class="wordmark" href={demo ? `/${type}/` : '/'}>
+      handism<span>{type === 'editorial' ? '®' : '.'}</span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <a href="#work">
+        Work <sup>{projectCountLabel}</sup>
+      </a>
+      <a href="#about">About</a>
+      <a href="https://github.com/handism" target="_blank" rel="noreferrer">
+        GitHub ↗
+      </a>
+    </nav>
+    <span class="header-note mono">
+      {type === 'lab'
+        ? 'INDEPENDENT DEVELOPER'
+        : type === 'editorial'
+          ? 'THE PORTFOLIO ISSUE / 2026'
+          : 'A COLLECTION OF CURIOSITIES'}
+    </span>
+  </header>
   <main id="main">
     <section class="hero">
-      <div class="hero-topline mono"><span><i class="status-dot"></i>{type === 'lab' ? 'ALWAYS EXPLORING' : type === 'editorial' ? 'DESIGNING THROUGH CODE' : 'ENTER A DIFFERENT PERSPECTIVE'}</span><span>BASED IN CURIOSITY</span></div>
-      <div class="hero-copy">
-        {type === 'lab' && <><p class="eyebrow">IDEAS, EXPERIMENTS & LITTLE OBSESSIONS</p><h1>Make things.<br/><em>Feel things.</em></h1><p class="hero-jp">好奇心を、動くものに。</p><p class="hero-description">日々の「こんなのあったら」を、コードでかたちに。<br/>Web、AI、そしてちょっと変わった体験をつくっています。</p></>}
-        {type === 'editorial' && <><p class="eyebrow">A PERSONAL COLLECTION BY HANDISM</p><h1>Curiosity,<br/><em>made tangible.</em></h1><p class="hero-jp">好奇心を、かたちにする。</p><p class="hero-description">暮らしの小さな不便から、好きなことの探求まで。<br/>考えて、試して、つくってきたものの記録。</p></>}
-        {type === 'gallery' && <><p class="eyebrow">CODE IS JUST THE BEGINNING.</p><h1>Somewhere<br/><em>beyond ordinary.</em></h1><p class="hero-jp">好奇心の、その先へ。</p><p class="hero-description">音、記憶、道具、知識。<br/>コードから生まれた、小さな世界を巡る。</p></>}
-        <a class="hero-cta" href="#work">{type === 'gallery' ? '展示を巡る' : 'つくったものを見る'}<span>↘</span></a>
+      <div class="hero-topline mono">
+        <span>
+          <i class="status-dot"></i>
+          {type === 'lab'
+            ? 'ALWAYS EXPLORING'
+            : type === 'editorial'
+              ? 'DESIGNING THROUGH CODE'
+              : 'ENTER A DIFFERENT PERSPECTIVE'}
+        </span>
+        <span>BASED IN CURIOSITY</span>
       </div>
-      <Art type={type === 'lab' ? 'orbit' : type === 'editorial' ? 'flower' : 'portal'} hero />
-      <div class="hero-bottom mono"><span>{type === 'editorial' ? 'VOLUME 01 — SELECTED WORKS' : 'WEB / AI / TOOLS / EXPERIMENTS'}</span><a href="#work">SCROLL TO EXPLORE ↓</a></div>
-      {type === 'editorial' && <span class="editorial-stamp">THINK<br/>MAKE<br/>REPEAT ↗</span>}
+      <div class="hero-copy">
+        {type === 'lab' && (
+          <>
+            <p class="eyebrow">IDEAS, EXPERIMENTS & LITTLE OBSESSIONS</p>
+            <h1>
+              Make things.
+              <br />
+              <em>Feel things.</em>
+            </h1>
+            <p class="hero-jp">好奇心を、動くものに。</p>
+            <p class="hero-description">
+              日々の「こんなのあったら」を、コードでかたちに。
+              <br />
+              Web、AI、そしてちょっと変わった体験をつくっています。
+            </p>
+          </>
+        )}
+        {type === 'editorial' && (
+          <>
+            <p class="eyebrow">A PERSONAL COLLECTION BY HANDISM</p>
+            <h1>
+              Curiosity,
+              <br />
+              <em>made tangible.</em>
+            </h1>
+            <p class="hero-jp">好奇心を、かたちにする。</p>
+            <p class="hero-description">
+              暮らしの小さな不便から、好きなことの探求まで。
+              <br />
+              考えて、試して、つくってきたものの記録。
+            </p>
+          </>
+        )}
+        {type === 'gallery' && (
+          <>
+            <p class="eyebrow">CODE IS JUST THE BEGINNING.</p>
+            <h1>
+              Somewhere
+              <br />
+              <em>beyond ordinary.</em>
+            </h1>
+            <p class="hero-jp">好奇心の、その先へ。</p>
+            <p class="hero-description">
+              音、記憶、道具、知識。
+              <br />
+              コードから生まれた、小さな世界を巡る。
+            </p>
+          </>
+        )}
+        <a class="hero-cta" href="#work">
+          {type === 'gallery' ? '展示を巡る' : 'つくったものを見る'}
+          <span>↘</span>
+        </a>
+      </div>
+      <Art type={concept.art} hero />
+      <div class="hero-bottom mono">
+        <span>
+          {type === 'editorial'
+            ? 'VOLUME 01 — SELECTED WORKS'
+            : 'WEB / AI / TOOLS / EXPERIMENTS'}
+        </span>
+        <a href="#work">SCROLL TO EXPLORE ↓</a>
+      </div>
+      {type === 'editorial' && (
+        <span class="editorial-stamp">
+          THINK
+          <br />
+          MAKE
+          <br />
+          REPEAT ↗
+        </span>
+      )}
     </section>
-    {type === 'lab' && <div class="ticker" aria-hidden="true"><div>{Array.from({length: 4}, () => <span>BUILD WITH CURIOSITY <i>✳</i> MAKE IT PERSONAL <i>✳</i> </span>)}</div></div>}
+    {type === 'lab' && (
+      <div class="ticker" aria-hidden="true">
+        <div>
+          {Array.from({ length: 4 }, () => (
+            <span>
+              BUILD WITH CURIOSITY <i>✳</i> MAKE IT PERSONAL <i>✳</i>{' '}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
     <section id="work" class="work section-wrap">
-      <div class="section-heading reveal"><div><p class="eyebrow">{type === 'gallery' ? 'THE EXHIBITION / 01—04' : 'SELECTED WORK / 01—04'}</p><h2>{type === 'lab' ? 'Small ideas. Real things.' : type === 'editorial' ? 'Selected works.' : 'Worlds to discover.'}</h2></div><p>つくるたび、少しずつ世界が広がる。</p></div>
-      <div class="filter-row reveal"><div class="filters" role="group" aria-label="作品のカテゴリー">{['All', 'Web', 'AI', 'Tools'].map((filter, i) => <button type="button" data-filter={filter} aria-pressed={i === 0}>{filter}{filter === 'All' && <sup>04</sup>}</button>)}</div><span class="mono result-count" aria-live="polite">4 PROJECTS</span></div>
-      <div class="project-grid">{projects.map(project => <article class="project reveal" data-category={project.filter}>
-        <button class="project-visual" type="button" data-project={project.id} aria-label={`${project.title}の詳細を見る`}><Art type={project.art} /><span class="visual-index mono">{project.number} / {project.category.toUpperCase()}</span><span class="visual-open">↗</span><span class="visual-caption">CONCEPT VISUAL</span></button>
-        <div class="project-content"><div class="project-title"><span class="project-number mono">/{project.number}</span><h3><button type="button" data-project={project.id}>{project.title}</button></h3><span class="project-category mono">{project.category}</span></div><p class="project-ja">{project.ja}</p><p class="project-description">{project.description}</p><div class="project-stack">{project.stack.slice(0, 3).map(tech => <span>{tech}</span>)}</div><button class="project-more" type="button" data-project={project.id}>Explore project <span>↗</span></button></div>
-      </article>)}</div>
-      <a class="all-projects" href="https://github.com/handism?tab=repositories" target="_blank" rel="noreferrer"><span>まだまだ、実験中。</span>すべてのリポジトリをGitHubで見る ↗</a>
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">
+            {type === 'gallery' ? 'THE EXHIBITION' : 'SELECTED WORK'} / 01—
+            {projectCountLabel}
+          </p>
+          <h2>
+            {type === 'lab'
+              ? 'Small ideas. Real things.'
+              : type === 'editorial'
+                ? 'Selected works.'
+                : 'Worlds to discover.'}
+          </h2>
+        </div>
+        <p>つくるたび、少しずつ世界が広がる。</p>
+      </div>
+      <div class="filter-row reveal">
+        <div class="filters" role="group" aria-label="作品のカテゴリー">
+          {projectFilters.map((filter, i) => (
+            <button type="button" data-filter={filter} aria-pressed={i === 0}>
+              {filter}
+              {filter === 'All' && <sup>{projectCountLabel}</sup>}
+            </button>
+          ))}
+        </div>
+        <span class="mono result-count" aria-live="polite">
+          {projectCount} PROJECT{projectCount === 1 ? '' : 'S'}
+        </span>
+      </div>
+      <div class="project-grid">
+        {projects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+      <a
+        class="all-projects"
+        href="https://github.com/handism?tab=repositories"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span>まだまだ、実験中。</span>すべてのリポジトリをGitHubで見る ↗
+      </a>
     </section>
-    <section id="about" class="about section-wrap"><div class="about-intro reveal"><p class="eyebrow">BEHIND THE WORK</p><h2>It starts with<br/><em>“what if?”</em></h2><p class="about-lead">好きなことを、深く。<br/>気になることを、まずつくる。</p><p>サウナで過ごす時間も、メモを書く習慣も、<br class="desktop-only"/>新しい技術への興味も。ものづくりの入口は、日常の中に。</p><a href="https://github.com/handism" target="_blank" rel="noreferrer">Meet me on GitHub ↗</a></div><div class="expertise reveal"><p class="eyebrow">MY TOOLBOX / 実績につながる技術</p>{[
-      ['01', 'Interfaces & experiences', 'React / Next.js / TypeScript', 'サウナ体験や、地図で振り返るWebアプリ。', 'sauna-simulator'],
-      ['02', 'Intelligence, locally', 'Kotlin / Android / RAG', '自分のメモと会話する、オンデバイスAI。', 'mini-brain'],
-      ['03', 'Tools for everyday', 'VS Code API / GitHub Actions', '日々の作業を少し快適にする開発ツール。', 'memo-explorer'],
-      ['04', 'Beyond the frontend', 'Rails / PostgreSQL / Terraform', 'アプリを支えるAPI、データ、インフラ設計。', 'sauna-itta'],
-    ].map(([n, title, stack, desc, id]) => <button class="expertise-row" type="button" data-project={id}><span class="mono">{n}</span><div><h3>{title}</h3><p>{stack}</p><small>{desc}</small></div><span>↗</span></button>)}</div></section>
-    <footer class="site-footer section-wrap"><p class="eyebrow">THE NEXT IDEA IS ALREADY ON ITS WAY.</p><a href="https://github.com/handism" target="_blank" rel="noreferrer">Stay curious.<span>↗</span></a><div class="footer-bottom mono"><span>HANDISM © 2026</span><span>MADE OF SMALL EXPERIMENTS</span><a href="#main">BACK TO TOP ↑</a></div></footer>
+    <section id="about" class="about section-wrap">
+      <div class="about-intro reveal">
+        <p class="eyebrow">BEHIND THE WORK</p>
+        <h2>
+          It starts with
+          <br />
+          <em>“what if?”</em>
+        </h2>
+        <p class="about-lead">
+          好きなことを、深く。
+          <br />
+          気になることを、まずつくる。
+        </p>
+        <p>
+          サウナで過ごす時間も、メモを書く習慣も、
+          <br class="desktop-only" />
+          新しい技術への興味も。ものづくりの入口は、日常の中に。
+        </p>
+        <a href="https://github.com/handism" target="_blank" rel="noreferrer">
+          Meet me on GitHub ↗
+        </a>
+      </div>
+      <div class="expertise reveal">
+        <p class="eyebrow">MY TOOLBOX / 実績につながる技術</p>
+        {[
+          [
+            '01',
+            'Interfaces & experiences',
+            'React / Next.js / TypeScript',
+            'サウナ体験や、地図で振り返るWebアプリ。',
+            'sauna-simulator',
+          ],
+          [
+            '02',
+            'Intelligence, locally',
+            'Kotlin / Android / RAG',
+            '自分のメモと会話する、オンデバイスAI。',
+            'mini-brain',
+          ],
+          [
+            '03',
+            'Tools for everyday',
+            'VS Code API / GitHub Actions',
+            '日々の作業を少し快適にする開発ツール。',
+            'memo-explorer',
+          ],
+          [
+            '04',
+            'Beyond the frontend',
+            'Rails / PostgreSQL / Terraform',
+            'アプリを支えるAPI、データ、インフラ設計。',
+            'sauna-itta',
+          ],
+        ].map(([n, title, stack, desc, id]) => (
+          <button class="expertise-row" type="button" data-project={id}>
+            <span class="mono">{n}</span>
+            <div>
+              <h3>{title}</h3>
+              <p>{stack}</p>
+              <small>{desc}</small>
+            </div>
+            <span>↗</span>
+          </button>
+        ))}
+      </div>
+    </section>
+    <footer class="site-footer section-wrap">
+      <p class="eyebrow">THE NEXT IDEA IS ALREADY ON ITS WAY.</p>
+      <a href="https://github.com/handism" target="_blank" rel="noreferrer">
+        Stay curious.<span>↗</span>
+      </a>
+      <div class="footer-bottom mono">
+        <span>HANDISM © 2026</span>
+        <span>MADE OF SMALL EXPERIMENTS</span>
+        <a href="#main">BACK TO TOP ↑</a>
+      </div>
+    </footer>
   </main>
-  {demo ? <nav class="concept-switcher" aria-label="デザインデモの切り替え"><a class="switch-home" href="/concepts/" aria-label="3案の比較ページ">◫ <span>比較</span></a><span class="switch-divider"></span>{themes.map(theme => <a href={`/${theme.id}/`} aria-current={type === theme.id ? 'page' : undefined}><b>{theme.letter}</b><span>{theme.name}</span></a>)}<button type="button" class="motion-toggle" aria-pressed="false" aria-label="動きを停止">Ⅱ</button></nav> : <button type="button" class="motion-toggle motion-standalone" aria-pressed="false" aria-label="動きを停止" title="アニメーションの停止・再開">Ⅱ</button>}
-  {projects.map(project => <dialog id={`detail-${project.id}`} class="project-dialog" aria-labelledby={`title-${project.id}`}><div class="dialog-inner"><button type="button" class="dialog-close" aria-label="詳細を閉じる">×</button><Art type={project.art} /><div class="dialog-copy"><p class="eyebrow">{project.category} / CONCEPT VISUAL</p><h2 id={`title-${project.id}`}>{project.title}</h2><p class="dialog-ja">{project.ja}</p><p>{project.detail}</p><div class="project-stack">{project.stack.map(tech => <span>{tech}</span>)}</div><a class="dialog-link" href={`https://github.com/handism/${project.id}`} target="_blank" rel="noreferrer">GitHubでプロジェクトを見る ↗</a></div></div></dialog>)}
+  {demo ? (
+    <nav class="concept-switcher" aria-label="デザインデモの切り替え">
+      <a class="switch-home" href="/concepts/" aria-label="3案の比較ページ">
+        ◫ <span>比較</span>
+      </a>
+      <span class="switch-divider"></span>
+      {themes.map((theme) => (
+        <a
+          href={`/${theme.id}/`}
+          aria-current={type === theme.id ? 'page' : undefined}
+        >
+          <b>{theme.letter}</b>
+          <span>{theme.name}</span>
+        </a>
+      ))}
+      <MotionToggle />
+    </nav>
+  ) : (
+    <MotionToggle standalone />
+  )}
+  {projects.map((project) => (
+    <ProjectDialog project={project} />
+  ))}
 </Base>

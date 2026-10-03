@@ -1,0 +1,16 @@
+---
+interface Props {
+  standalone?: boolean;
+}
+const { standalone = false } = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={['motion-toggle', { 'motion-standalone': standalone }]}
+  aria-pressed="false"
+  aria-label="動きを停止"
+  title="アニメーションの停止・再開"
+>
+  Ⅱ
+</button>

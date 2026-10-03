@@ -1,14 +1,84 @@
 ---
 import Base from '../layouts/Base.astro';
 import Art from '../components/Art.astro';
-import { themes } from '../data/projects';
+import { themes } from '../data/themes';
+import { projectCount } from '../data/projects';
+import MotionToggle from '../components/MotionToggle.astro';
 ---
+
 <Base title="handism — Three ways to tell a story">
-  <header class="chooser-nav"><a class="wordmark" href="/">handism<span>®</span></a><span class="mono">PORTFOLIO / DESIGN STUDIES</span><a href="https://github.com/handism" target="_blank" rel="noreferrer">GitHub ↗</a></header>
+  <header class="chooser-nav">
+    <a class="wordmark" href="/">
+      handism<span>®</span>
+    </a>
+    <span class="mono">PORTFOLIO / DESIGN STUDIES</span>
+    <a href="https://github.com/handism" target="_blank" rel="noreferrer">
+      GitHub ↗
+    </a>
+  </header>
   <main id="main" class="chooser-main">
-    <div class="chooser-intro"><p class="eyebrow">ONE CREATOR. THREE PERSPECTIVES.</p><h1>Same curiosity.<br/><span>Different worlds.</span></h1><div class="chooser-description"><p>ひとつの好奇心。3つの見せ方。</p><p>色、余白、動き。それぞれの世界を、体験してみてください。</p></div></div>
-    <div class="concepts">{themes.map((theme, i) => <a href={`/${theme.id}/`} class={`concept concept-${theme.id}`}><div class="concept-preview"><Art type={['orbit', 'flower', 'portal'][i]} /><span class="concept-letter">{theme.letter}</span><span class="concept-enter">↗</span>{i === 0 ? <h2>Midnight<br/><em>Lab.</em></h2> : i === 1 ? <h2>The<br/><em>Edit.</em></h2> : <h2>Elsewhere<span>好奇心の、その先へ。</span></h2>}</div><div class="concept-info"><div><span class="mono">CONCEPT {theme.letter}</span><h3>{theme.ja}</h3><p>{theme.description}</p></div><span class="concept-arrow">↗</span></div><p class="concept-tags mono">{theme.tags}</p></a>)}</div>
-    <div class="chooser-note"><span class="status-dot"></span><p>同じ4つのプロジェクトを、異なるレイアウトとモーションで。<br class="mobile-only"/>各デモ下部のバーから、いつでも切り替えられます。</p></div>
+    <div class="chooser-intro">
+      <p class="eyebrow">ONE CREATOR. THREE PERSPECTIVES.</p>
+      <h1>
+        Same curiosity.
+        <br />
+        <span>Different worlds.</span>
+      </h1>
+      <div class="chooser-description">
+        <p>ひとつの好奇心。3つの見せ方。</p>
+        <p>色、余白、動き。それぞれの世界を、体験してみてください。</p>
+      </div>
+    </div>
+    <div class="concepts">
+      {themes.map((theme) => (
+        <a href={`/${theme.id}/`} class={`concept concept-${theme.id}`}>
+          <div class="concept-preview">
+            <Art type={theme.art} />
+            <span class="concept-letter">{theme.letter}</span>
+            <span class="concept-enter">↗</span>
+            {theme.id === 'lab' ? (
+              <h2>
+                Midnight
+                <br />
+                <em>Lab.</em>
+              </h2>
+            ) : theme.id === 'editorial' ? (
+              <h2>
+                The
+                <br />
+                <em>Edit.</em>
+              </h2>
+            ) : (
+              <h2>
+                Elsewhere<span>好奇心の、その先へ。</span>
+              </h2>
+            )}
+          </div>
+          <div class="concept-info">
+            <div>
+              <span class="mono">CONCEPT {theme.letter}</span>
+              <h3>{theme.ja}</h3>
+              <p>{theme.description}</p>
+            </div>
+            <span class="concept-arrow">↗</span>
+          </div>
+          <p class="concept-tags mono">{theme.tags}</p>
+        </a>
+      ))}
+    </div>
+    <div class="chooser-note">
+      <span class="status-dot"></span>
+      <p>
+        同じ{projectCount}つのプロジェクトを、異なるレイアウトとモーションで。
+        <br class="mobile-only" />
+        各デモ下部のバーから、いつでも切り替えられます。
+      </p>
+    </div>
   </main>
-  <footer class="chooser-footer"><span>HANDISM © 2026</span><span>Built with curiosity, and Astro.</span><span>DESIGN EXPLORATION — 01</span></footer>
+  <footer class="chooser-footer">
+    <span>HANDISM © 2026</span>
+    <span>Built with curiosity, and Astro.</span>
+    <span>DESIGN EXPLORATION — 01</span>
+  </footer>
+  <MotionToggle standalone />
 </Base>

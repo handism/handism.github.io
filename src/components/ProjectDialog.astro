@@ -1,0 +1,40 @@
+---
+import Art from './Art.astro';
+import type { Project } from '../data/projects';
+interface Props {
+  project: Project;
+}
+const { project } = Astro.props;
+---
+
+<dialog
+  id={`detail-${project.id}`}
+  class="project-dialog"
+  aria-labelledby={`title-${project.id}`}
+>
+  <div class="dialog-inner">
+    <button type="button" class="dialog-close" aria-label="詳細を閉じる">
+      ×
+    </button>
+    <Art type={project.art} />
+    <div class="dialog-copy">
+      <p class="eyebrow">{project.category} / CONCEPT VISUAL</p>
+      <h2 id={`title-${project.id}`}>{project.title}</h2>
+      <p class="dialog-ja">{project.ja}</p>
+      <p>{project.detail}</p>
+      <div class="project-stack">
+        {project.stack.map((tech) => (
+          <span>{tech}</span>
+        ))}
+      </div>
+      <a
+        class="dialog-link"
+        href={`https://github.com/handism/${project.id}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHubでプロジェクトを見る ↗
+      </a>
+    </div>
+  </div>
+</dialog>

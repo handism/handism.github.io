@@ -64,6 +64,16 @@ for (const theme of ['lab', 'editorial', 'gallery']) {
 
 test('comparison page links to every design at desktop and mobile widths', async ({ page }) => {
   await page.goto('/concepts/');
+  const flower = page.locator('.concept-editorial .flower');
+  await page.getByRole('button', { name: '動きを停止', exact: true }).click();
+  await expect(flower).toHaveCSS('animation-play-state', 'paused');
+  await page.getByRole('button', { name: '動きを再開' }).click();
+  await expect(flower).toHaveCSS('animation-play-state', 'running');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(page.locator('.motion-toggle')).toBeDisabled();
+  await expect(flower).toHaveCSS('animation-name', 'none');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect(page.locator('.motion-toggle')).toBeEnabled();
   for (const theme of ['lab', 'editorial', 'gallery']) {
     await page.locator(`.concept-${theme}`).click();
     await expect(page).toHaveURL(new RegExp(`/${theme}/$`));

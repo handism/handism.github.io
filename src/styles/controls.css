@@ -1,0 +1,152 @@
+/* Demo controls & project details */
+.concept-switcher {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px;
+  background: #f5f3e9ef;
+  color: #303229;
+  border: 1px solid #fff8;
+  box-shadow: 0 6px 30px #0003;
+  backdrop-filter: blur(18px);
+  z-index: 20;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+.concept-switcher > a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.3;
+  transition: background 0.25s;
+}
+.concept-switcher > a b {
+  font: 10px var(--display);
+  opacity: 0.65;
+}
+.concept-switcher > a[aria-current='page'] {
+  background: #252b23;
+  color: #e3f6b5;
+}
+.concept-switcher > a:hover:not([aria-current]) {
+  background: #e0e1d6;
+}
+.switch-home {
+  font-size: 16px !important;
+}
+.switch-home span {
+  font-size: 10px;
+}
+.switch-divider {
+  height: 20px;
+  width: 1px;
+  background: #cbcec2;
+  margin: 0 3px;
+}
+.motion-toggle {
+  background: transparent;
+  border-left: 1px solid #cbcec2;
+  padding: 8px 10px;
+  margin-left: 3px;
+  min-width: 35px;
+}
+.motion-toggle[aria-pressed='true'] {
+  color: #37663c;
+}
+.project-dialog {
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--fg);
+  width: min(740px, calc(100% - 32px));
+  max-height: 85svh;
+  padding: 0;
+  border-radius: 8px;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.project-dialog::backdrop {
+  background: #090b0dcc;
+  backdrop-filter: blur(8px);
+}
+.dialog-inner {
+  position: relative;
+}
+.dialog-inner > .art {
+  height: 270px;
+}
+.dialog-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 4;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: #f5f4ed;
+  color: #222;
+  font-size: 26px;
+  line-height: 1;
+}
+.dialog-copy {
+  padding: 35px;
+}
+.dialog-copy h2 {
+  font-size: 34px;
+  letter-spacing: -0.04em;
+}
+.dialog-copy .eyebrow {
+  font-size: 9px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.dialog-ja {
+  font-size: 17px;
+  margin-top: 20px;
+}
+.dialog-copy > p:not(.eyebrow):not(.dialog-ja) {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 2;
+  margin-top: 18px;
+}
+.dialog-link {
+  display: inline-block;
+  margin-top: 28px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+}
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+.js-motion .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+.js-motion .reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.motion-paused *,
+.motion-paused *:before,
+.motion-paused *:after {
+  animation-play-state: paused !important;
+  transition: none !important;
+}
+.motion-paused .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+html:has(.motion-paused) {
+  scroll-behavior: auto;
+}

@@ -1,13 +1,133 @@
 ---
-interface Props { type: string; hero?: boolean }
+interface Props {
+  type: string;
+  hero?: boolean;
+}
 const { type, hero = false } = Astro.props;
 ---
-<div class:list={['art', `art-${type}`, { 'art-hero': hero }]} aria-hidden="true">
-  {type === 'orbit' && <div class="orbit-system"><div class="orbit-core"></div>{Array.from({length: 12}, (_, i) => <i class="orbit-ring" style={`--i:${i}`}></i>)}<span class="orbit-label">CURIOSITY IN ORBIT / 001</span><b class="orbit-point"></b></div>}
-  {type === 'flower' && <div class="flower">{Array.from({length: 12}, (_, i) => <i style={`--i:${i}`}></i>)}<b></b></div>}
-  {type === 'portal' && <div class="portal">{Array.from({length: 16}, (_, i) => <i style={`--i:${i}`}></i>)}<b></b></div>}
-  {type === 'sauna' && <><div class="sauna-sun"></div><div class="sauna-land land-back"></div><div class="sauna-land land-front"></div><div class="sauna-house"><div class="house-glass"></div><div class="house-door"></div></div><div class="sauna-water"></div><div class="steam"><i></i><i></i><i></i></div><span class="art-caption">90°C &nbsp; / &nbsp; BREATHE OUT</span></>}
-  {type === 'map' && <><div class="map-grid"></div><div class="map-river"></div><div class="map-road"></div><div class="map-pin pin-one"><b>♨</b></div><div class="map-pin pin-two"><b>♨</b></div><div class="map-pin pin-three"><b>♨</b></div><div class="map-note"><span>MY SAUNA JOURNAL</span><strong>次は、どこでととのう？</strong><i>Explore your next escape ↗</i></div></>}
-  {type === 'brain' && <><div class="brain-orb"></div><div class="brain-orbit"></div><div class="brain-orbit second"></div><div class="brain-chat"><small>MINI BRAIN</small><p>あのメモ、覚えてる？</p><span>あなたの知識を、つなぎ直す。</span><div class="chat-dots">● ● ●</div></div><span class="brain-label">YOUR KNOWLEDGE. YOUR DEVICE.</span></>}
-  {type === 'memo' && <><div class="memo-window"><div class="memo-title"><i></i><i></i><i></i><span>memo-explorer</span></div><div class="memo-body"><aside>EXPLORER<br/><br/>⌄ notes<br/>　⌄ ideas<br/>　　<span>↳ today.md</span><br/>　　↳ someday.md<br/><br/>⌄ bookmarks<br/>　↳ inspiration</aside><div><small>today.md</small><h4># A little idea.</h4><p>つくりたいものを、<br/>ひとつずつ。</p><span class="code-line"></span><span class="code-line short"></span><b class="caret">▍</b></div></div></div></>}
+
+<div
+  class:list={['art', `art-${type}`, { 'art-hero': hero }]}
+  aria-hidden="true"
+>
+  {type === 'orbit' && (
+    <div class="orbit-system">
+      <div class="orbit-core"></div>
+      {Array.from({ length: 12 }, (_, i) => (
+        <i class="orbit-ring" style={`--i:${i}`}></i>
+      ))}
+      <span class="orbit-label">CURIOSITY IN ORBIT / 001</span>
+      <b class="orbit-point"></b>
+    </div>
+  )}
+  {type === 'flower' && (
+    <div class="flower">
+      {Array.from({ length: 12 }, (_, i) => (
+        <i style={`--i:${i}`}></i>
+      ))}
+      <b></b>
+    </div>
+  )}
+  {type === 'portal' && (
+    <div class="portal">
+      {Array.from({ length: 16 }, (_, i) => (
+        <i style={`--i:${i}`}></i>
+      ))}
+      <b></b>
+    </div>
+  )}
+  {type === 'sauna' && (
+    <>
+      <div class="sauna-sun"></div>
+      <div class="sauna-land land-back"></div>
+      <div class="sauna-land land-front"></div>
+      <div class="sauna-house">
+        <div class="house-glass"></div>
+        <div class="house-door"></div>
+      </div>
+      <div class="sauna-water"></div>
+      <div class="steam">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <span class="art-caption">90°C &nbsp; / &nbsp; BREATHE OUT</span>
+    </>
+  )}
+  {type === 'map' && (
+    <>
+      <div class="map-grid"></div>
+      <div class="map-river"></div>
+      <div class="map-road"></div>
+      <div class="map-pin pin-one">
+        <b>♨</b>
+      </div>
+      <div class="map-pin pin-two">
+        <b>♨</b>
+      </div>
+      <div class="map-pin pin-three">
+        <b>♨</b>
+      </div>
+      <div class="map-note">
+        <span>MY SAUNA JOURNAL</span>
+        <strong>次は、どこでととのう？</strong>
+        <i>Explore your next escape ↗</i>
+      </div>
+    </>
+  )}
+  {type === 'brain' && (
+    <>
+      <div class="brain-orb"></div>
+      <div class="brain-orbit"></div>
+      <div class="brain-orbit second"></div>
+      <div class="brain-chat">
+        <small>MINI BRAIN</small>
+        <p>あのメモ、覚えてる？</p>
+        <span>あなたの知識を、つなぎ直す。</span>
+        <div class="chat-dots">● ● ●</div>
+      </div>
+      <span class="brain-label">YOUR KNOWLEDGE. YOUR DEVICE.</span>
+    </>
+  )}
+  {type === 'memo' && (
+    <>
+      <div class="memo-window">
+        <div class="memo-title">
+          <i></i>
+          <i></i>
+          <i></i>
+          <span>memo-explorer</span>
+        </div>
+        <div class="memo-body">
+          <aside>
+            EXPLORER
+            <br />
+            <br />⌄ notes
+            <br />
+            　⌄ ideas
+            <br />
+            　　<span>↳ today.md</span>
+            <br />
+            　　↳ someday.md
+            <br />
+            <br />⌄ bookmarks
+            <br />
+            　↳ inspiration
+          </aside>
+          <div>
+            <small>today.md</small>
+            <h4># A little idea.</h4>
+            <p>
+              つくりたいものを、
+              <br />
+              ひとつずつ。
+            </p>
+            <span class="code-line"></span>
+            <span class="code-line short"></span>
+            <b class="caret">▍</b>
+          </div>
+        </div>
+      </div>
+    </>
+  )}
 </div>

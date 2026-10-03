@@ -1,8 +1,9 @@
 ---
 import '../styles/global.css';
+import type { ThemeId } from '../data/themes';
 interface Props {
   title: string;
-  theme?: string;
+  theme?: ThemeId | 'chooser';
   description?: string;
 }
 const {

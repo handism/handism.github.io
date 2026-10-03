@@ -36,23 +36,18 @@ import MotionToggle from '../components/MotionToggle.astro';
             <Art type={theme.art} />
             <span class="concept-letter">{theme.letter}</span>
             <span class="concept-enter">↗</span>
-            {theme.id === 'lab' ? (
-              <h2>
-                Midnight
-                <br />
-                <em>Lab.</em>
-              </h2>
-            ) : theme.id === 'editorial' ? (
-              <h2>
-                The
-                <br />
-                <em>Edit.</em>
-              </h2>
-            ) : (
-              <h2>
-                Elsewhere<span>好奇心の、その先へ。</span>
-              </h2>
-            )}
+            <h2>
+              {theme.conceptTitle.text}
+              {theme.conceptTitle.em && (
+                <>
+                  <br />
+                  <em>{theme.conceptTitle.em}</em>
+                </>
+              )}
+              {theme.conceptTitle.note && (
+                <span>{theme.conceptTitle.note}</span>
+              )}
+            </h2>
           </div>
           <div class="concept-info">
             <div>

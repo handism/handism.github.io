@@ -73,7 +73,9 @@ node scripts/capture.mjs
 ## コードの整理と整形
 
 - `src/data/projects.ts`: 作品情報、作品数、カテゴリー一覧。
-- `src/data/themes.ts`: テーマ情報とイラストの種類。トップページは `getTheme('editorial')` で選択します。
+- `src/data/themes.ts`: テーマ情報、イラストの種類、テーマ別の見出し・文言。トップページは `getTheme('editorial')` で選択します。
+- `src/data/expertise.ts`: About欄の技術と、対応するプロジェクト。
+- `src/data/art.ts`: コンセプトイラストの種類（`Art.astro` の `type` に使う型）。
 - `src/components/ProjectCard.astro` / `ProjectDialog.astro`: 作品一覧と詳細。
 - `src/components/MotionToggle.astro`: トップ・各デモ・比較ページ共通の停止ボタン。
 - `src/styles/global.css`: CSSの読み込み口。共通、イラスト、テーマ、操作部品、比較ページ、アニメーション、レスポンシブの順序を維持しています。

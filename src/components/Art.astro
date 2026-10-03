@@ -1,6 +1,7 @@
 ---
+import type { ArtType } from '../data/art';
 interface Props {
-  type: string;
+  type: ArtType;
   hero?: boolean;
 }
 const { type, hero = false } = Astro.props;

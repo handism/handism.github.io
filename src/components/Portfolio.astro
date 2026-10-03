@@ -7,6 +7,7 @@ import {
   projectCountLabel,
   projectFilters,
 } from '../data/projects';
+import { expertise } from '../data/expertise';
 import { themes, type Theme } from '../data/themes';
 import ProjectCard from './ProjectCard.astro';
 import ProjectDialog from './ProjectDialog.astro';
@@ -17,12 +18,13 @@ interface Props {
 }
 const { concept, demo = true } = Astro.props;
 const type = concept.id;
+const { hero, work, ticker, stamp } = concept;
 ---
 
 <Base title={`handism — ${concept.name}`} theme={type}>
   <header class="site-header">
     <a class="wordmark" href={demo ? `/${type}/` : '/'}>
-      handism<span>{type === 'editorial' ? '®' : '.'}</span>
+      handism<span>{concept.wordmarkMark}</span>
     </a>
     <nav aria-label="メインナビゲーション">
       <a href="#work">
@@ -33,106 +35,64 @@ const type = concept.id;
         GitHub ↗
       </a>
     </nav>
-    <span class="header-note mono">
-      {type === 'lab'
-        ? 'INDEPENDENT DEVELOPER'
-        : type === 'editorial'
-          ? 'THE PORTFOLIO ISSUE / 2026'
-          : 'A COLLECTION OF CURIOSITIES'}
-    </span>
+    <span class="header-note mono">{concept.headerNote}</span>
   </header>
   <main id="main">
     <section class="hero">
       <div class="hero-topline mono">
         <span>
           <i class="status-dot"></i>
-          {type === 'lab'
-            ? 'ALWAYS EXPLORING'
-            : type === 'editorial'
-              ? 'DESIGNING THROUGH CODE'
-              : 'ENTER A DIFFERENT PERSPECTIVE'}
+          {concept.status}
         </span>
         <span>BASED IN CURIOSITY</span>
       </div>
       <div class="hero-copy">
-        {type === 'lab' && (
-          <>
-            <p class="eyebrow">IDEAS, EXPERIMENTS & LITTLE OBSESSIONS</p>
-            <h1>
-              Make things.
-              <br />
-              <em>Feel things.</em>
-            </h1>
-            <p class="hero-jp">好奇心を、動くものに。</p>
-            <p class="hero-description">
-              日々の「こんなのあったら」を、コードでかたちに。
-              <br />
-              Web、AI、そしてちょっと変わった体験をつくっています。
-            </p>
-          </>
-        )}
-        {type === 'editorial' && (
-          <>
-            <p class="eyebrow">A PERSONAL COLLECTION BY HANDISM</p>
-            <h1>
-              Curiosity,
-              <br />
-              <em>made tangible.</em>
-            </h1>
-            <p class="hero-jp">好奇心を、かたちにする。</p>
-            <p class="hero-description">
-              暮らしの小さな不便から、好きなことの探求まで。
-              <br />
-              考えて、試して、つくってきたものの記録。
-            </p>
-          </>
-        )}
-        {type === 'gallery' && (
-          <>
-            <p class="eyebrow">CODE IS JUST THE BEGINNING.</p>
-            <h1>
-              Somewhere
-              <br />
-              <em>beyond ordinary.</em>
-            </h1>
-            <p class="hero-jp">好奇心の、その先へ。</p>
-            <p class="hero-description">
-              音、記憶、道具、知識。
-              <br />
-              コードから生まれた、小さな世界を巡る。
-            </p>
-          </>
-        )}
+        <p class="eyebrow">{hero.eyebrow}</p>
+        <h1>
+          {hero.title}
+          <br />
+          <em>{hero.titleEm}</em>
+        </h1>
+        <p class="hero-jp">{hero.jp}</p>
+        <p class="hero-description">
+          {hero.description.map((line, i) => (
+            <>
+              {i > 0 && <br />}
+              {line}
+            </>
+          ))}
+        </p>
         <a class="hero-cta" href="#work">
-          {type === 'gallery' ? '展示を巡る' : 'つくったものを見る'}
+          {hero.cta}
           <span>↘</span>
         </a>
       </div>
       <Art type={concept.art} hero />
       <div class="hero-bottom mono">
-        <span>
-          {type === 'editorial'
-            ? 'VOLUME 01 — SELECTED WORKS'
-            : 'WEB / AI / TOOLS / EXPERIMENTS'}
-        </span>
+        <span>{hero.bottom}</span>
         <a href="#work">SCROLL TO EXPLORE ↓</a>
       </div>
-      {type === 'editorial' && (
+      {stamp && (
         <span class="editorial-stamp">
-          THINK
-          <br />
-          MAKE
-          <br />
-          REPEAT ↗
+          {stamp.map((line, i) => (
+            <>
+              {i > 0 && <br />}
+              {line}
+            </>
+          ))}
         </span>
       )}
     </section>
-    {type === 'lab' && (
+    {ticker && (
       <div class="ticker" aria-hidden="true">
         <div>
           {Array.from({ length: 4 }, () => (
             <span>
-              BUILD WITH CURIOSITY <i>✳</i> MAKE IT PERSONAL <i>✳</i>{' '}
+              {ticker.map((phrase) => (
+                <>
+                  {phrase} <i>✳</i>{' '}
+                </>
+              ))}
             </span>
           ))}
         </div>
@@ -142,16 +102,10 @@ const type = concept.id;
       <div class="section-heading reveal">
         <div>
           <p class="eyebrow">
-            {type === 'gallery' ? 'THE EXHIBITION' : 'SELECTED WORK'} / 01—
+            {work.eyebrow} / 01—
             {projectCountLabel}
           </p>
-          <h2>
-            {type === 'lab'
-              ? 'Small ideas. Real things.'
-              : type === 'editorial'
-                ? 'Selected works.'
-                : 'Worlds to discover.'}
-          </h2>
+          <h2>{work.title}</h2>
         </div>
         <p>つくるたび、少しずつ世界が広がる。</p>
       </div>
@@ -206,42 +160,17 @@ const type = concept.id;
       </div>
       <div class="expertise reveal">
         <p class="eyebrow">MY TOOLBOX / 実績につながる技術</p>
-        {[
-          [
-            '01',
-            'Interfaces & experiences',
-            'React / Next.js / TypeScript',
-            'サウナ体験や、地図で振り返るWebアプリ。',
-            'sauna-simulator',
-          ],
-          [
-            '02',
-            'Intelligence, locally',
-            'Kotlin / Android / RAG',
-            '自分のメモと会話する、オンデバイスAI。',
-            'mini-brain',
-          ],
-          [
-            '03',
-            'Tools for everyday',
-            'VS Code API / GitHub Actions',
-            '日々の作業を少し快適にする開発ツール。',
-            'memo-explorer',
-          ],
-          [
-            '04',
-            'Beyond the frontend',
-            'Rails / PostgreSQL / Terraform',
-            'アプリを支えるAPI、データ、インフラ設計。',
-            'sauna-itta',
-          ],
-        ].map(([n, title, stack, desc, id]) => (
-          <button class="expertise-row" type="button" data-project={id}>
-            <span class="mono">{n}</span>
+        {expertise.map((item, i) => (
+          <button
+            class="expertise-row"
+            type="button"
+            data-project={item.projectId}
+          >
+            <span class="mono">{String(i + 1).padStart(2, '0')}</span>
             <div>
-              <h3>{title}</h3>
-              <p>{stack}</p>
-              <small>{desc}</small>
+              <h3>{item.title}</h3>
+              <p>{item.stack}</p>
+              <small>{item.description}</small>
             </div>
             <span>↗</span>
           </button>

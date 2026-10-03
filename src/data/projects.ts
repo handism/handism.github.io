@@ -1,4 +1,20 @@
-export const projects = [
+import type { ArtType } from './art';
+
+interface ProjectData {
+  id: string;
+  action: { label: string; href: string } | null;
+  number: string;
+  title: string;
+  ja: string;
+  category: string;
+  filter: 'Web' | 'AI' | 'Tools';
+  art: ArtType;
+  description: string;
+  detail: string;
+  stack: readonly string[];
+}
+
+const projectData = [
   {
     id: 'sauna-simulator',
     action: {
@@ -68,9 +84,11 @@ export const projects = [
       'Markdownの全文検索、デイリーノート、ブックマーク、ドラッグ＆ドロップに対応。日々の作業になじむ操作と、複数OSでの検証を大切にしています。',
     stack: ['TypeScript', 'VS Code API', 'GitHub Actions'],
   },
-];
+] as const satisfies readonly ProjectData[];
 
-export type Project = (typeof projects)[number];
+export type ProjectId = (typeof projectData)[number]['id'];
+export type Project = ProjectData & { id: ProjectId };
+export const projects: readonly Project[] = projectData;
 export const projectCount = projects.length;
 export const projectCountLabel = String(projectCount).padStart(2, '0');
 export const projectFilters = [

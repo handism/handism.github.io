@@ -1,6 +1,10 @@
 export const projects = [
   {
     id: 'sauna-simulator',
+    action: {
+      label: 'ブラウザで試す',
+      href: 'https://handism.github.io/sauna-simulator/',
+    },
     number: '01',
     title: 'Sauna Simulator',
     ja: 'ブラウザに、ひと息つける場所を。',
@@ -15,6 +19,10 @@ export const projects = [
   },
   {
     id: 'sauna-itta',
+    action: {
+      label: 'デモを試す',
+      href: 'https://handism.github.io/sauna-itta/',
+    },
     number: '02',
     title: 'Sauna Itta',
     ja: 'ととのった記憶を、地図に。',
@@ -29,6 +37,7 @@ export const projects = [
   },
   {
     id: 'mini-brain',
+    action: null,
     number: '03',
     title: 'Mini Brain',
     ja: '自分の知識と、会話する。',
@@ -43,6 +52,10 @@ export const projects = [
   },
   {
     id: 'memo-explorer',
+    action: {
+      label: 'ダウンロード（VSIX v1.1.0）',
+      href: 'https://github.com/handism/memo-explorer/releases/download/v1.1.0/memo-explorer-1.1.0.vsix',
+    },
     number: '04',
     title: 'Memo Explorer',
     ja: '思いつきを、作業のすぐ隣に。',

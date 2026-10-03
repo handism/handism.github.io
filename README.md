@@ -44,6 +44,7 @@ PLAYWRIGHT_BASE_URL=https://handism.github.io npm run test:browser
 ## デモの内容
 
 - 公開リポジトリ4件の紹介、カテゴリー絞り込み、詳細ダイアログ、GitHubへのリンク。
+- 詳細ダイアログからSauna Simulator・Sauna Ittaの公開デモ、Memo ExplorerのVSIX v1.1.0の直接ダウンロードへ移動できます。Mini Brainは公開リリースがないためGitHubリンクのみです。リンク先は2026-10-03に確認し、`src/data/projects.ts`で手動管理しています。
 - 技術と使用プロジェクトを結びつけた紹介。習熟度や業務経験は推定していません。
 - スクロール表示、CSSアニメーション、動きの一時停止、端末のモーション低減設定への対応。
 - キーボードでの操作、Escapeでの詳細閉じ、開いたボタンへのフォーカス復帰。

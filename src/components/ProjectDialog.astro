@@ -27,14 +27,26 @@ const { project } = Astro.props;
           <span>{tech}</span>
         ))}
       </div>
-      <a
-        class="dialog-link"
-        href={`https://github.com/handism/${project.id}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        GitHubでプロジェクトを見る ↗
-      </a>
+      <div class="dialog-actions">
+        {project.action && (
+          <a
+            class="dialog-action"
+            href={project.action.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {project.action.label} ↗
+          </a>
+        )}
+        <a
+          class="dialog-link"
+          href={`https://github.com/handism/${project.id}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHubでプロジェクトを見る ↗
+        </a>
+      </div>
     </div>
   </div>
 </dialog>

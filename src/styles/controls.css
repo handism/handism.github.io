@@ -116,9 +116,32 @@
   line-height: 2;
   margin-top: 18px;
 }
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-top: 28px;
+}
+.dialog-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 18px;
+  border: 1px solid var(--fg);
+  border-radius: 4px;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.dialog-action:hover {
+  background: var(--bg);
+  color: var(--fg);
+}
 .dialog-link {
   display: inline-block;
-  margin-top: 28px;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--line);
   font-size: 12px;

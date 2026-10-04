@@ -59,7 +59,11 @@ const projectData = [
   },
   {
     id: 'mini-brain',
-    action: null,
+    action: {
+      kind: 'download',
+      label: '最新版を入手（APK）',
+      href: 'https://github.com/handism/mini-brain/releases/latest',
+    },
     number: '03',
     title: 'Mini Brain',
     ja: '自分の知識と、会話する。',
@@ -76,8 +80,8 @@ const projectData = [
     id: 'memo-explorer',
     action: {
       kind: 'download',
-      label: 'ダウンロード（VSIX v1.1.0）',
-      href: 'https://github.com/handism/memo-explorer/releases/download/v1.1.0/memo-explorer-1.1.0.vsix',
+      label: '最新版を入手（VSIX）',
+      href: 'https://github.com/handism/memo-explorer/releases/latest',
     },
     number: '04',
     title: 'Memo Explorer',

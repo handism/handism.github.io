@@ -58,10 +58,15 @@ for (const theme of ['lab', 'editorial', 'gallery']) {
     const open = page.getByRole('button', { name: 'Mini Brainの詳細を見る' });
     await open.click();
     await expect(page.getByRole('dialog')).toBeVisible();
-    await expect(page.getByRole('dialog').getByRole('link')).toHaveAttribute(
+    await expect(
+      page.getByRole('dialog').getByRole('link', { name: /APK/ }),
+    ).toHaveAttribute(
       'href',
-      'https://github.com/handism/mini-brain',
+      'https://github.com/handism/mini-brain/releases/latest',
     );
+    await expect(
+      page.getByRole('dialog').getByRole('link', { name: /GitHub/ }),
+    ).toHaveAttribute('href', 'https://github.com/handism/mini-brain');
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(open).toBeFocused();

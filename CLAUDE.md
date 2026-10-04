@@ -26,7 +26,7 @@ handism の Astro 製ポートフォリオ（https://handism.github.io/）。外
 ## コンテンツの方針
 
 - 作品情報は公開リポジトリのREADMEをもとに `src/data/projects.ts` で手動管理（GitHubの自動同期・活動履歴の取得は未実装）。最終確認は 2026-10-03
-- 詳細ダイアログのリンク：Sauna Simulator・Sauna Itta は公開デモ、Memo Explorer は VSIX v1.1.0 の直接ダウンロード、Mini Brain は公開リリースがないため GitHub リンクのみ
+- 詳細ダイアログのリンク：Sauna Simulator・Sauna Itta は公開デモ、Memo Explorer（VSIX）・Mini Brain（APK）は GitHub の最新リリースページ（`/releases/latest`）。バージョン更新時にこちらの修正は不要
 - 技術紹介で習熟度や業務経験は推定しない
 - キャッチコピーと自己紹介は提案用の文案
 - 作品ビジュアルはCSSのコンセプトイラスト。画像生成・外部画像は使わない

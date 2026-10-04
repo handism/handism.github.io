@@ -1,3 +1,17 @@
+.project-dialog[open],
+.project-dialog[open]::backdrop {
+  animation: dialog-in 0.25s ease-out;
+}
+/* A paused animation would freeze the dialog at its invisible first frame. */
+.motion-paused .project-dialog[open],
+.motion-paused .project-dialog[open]::backdrop {
+  animation: none;
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+  }
+}
 @keyframes ticker {
   to {
     transform: translateX(-50%);

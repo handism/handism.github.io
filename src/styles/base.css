@@ -173,10 +173,6 @@ button svg {
   position: relative;
   z-index: 2;
   padding: 105px 0 100px;
-  pointer-events: none;
-}
-.hero-copy a {
-  pointer-events: auto;
 }
 .hero h1 {
   font-size: clamp(64px, 7.8vw, 125px);
@@ -192,7 +188,7 @@ button svg {
   margin-top: 26px;
 }
 .hero-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 2.1;
   margin-top: 14px;
@@ -223,6 +219,10 @@ button svg {
   bottom: 28px;
   left: 6vw;
   right: 6vw;
+}
+/* Leave room for the fixed motion toggle in the bottom-right corner. */
+body:has(.motion-standalone) .hero-bottom {
+  right: max(6vw, 96px);
 }
 .art-hero {
   position: absolute !important;
@@ -262,14 +262,14 @@ button svg {
   letter-spacing: -0.045em;
 }
 .section-heading > p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   padding-bottom: 6px;
 }
 .visual-note {
   display: block;
   margin-top: 6px;
-  font-size: 11px;
+  font-size: 12px;
 }
 .filter-row {
   display: flex;
@@ -368,23 +368,29 @@ button svg {
   font-size: 27px;
   letter-spacing: -0.035em;
 }
-.project h3 button {
-  padding: 0;
-  background: transparent;
+.project h3 {
   line-height: 1.2;
-  text-align: left;
+  cursor: pointer;
 }
 .project-category {
   font-size: 10px;
   color: var(--muted);
   margin-left: auto;
 }
+.project-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 30px;
+  color: var(--accent-ink, var(--accent));
+  white-space: nowrap;
+}
 .project-ja {
   font-size: 14px;
   margin-top: 15px;
 }
 .project-description {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.9;
   color: var(--muted);
   margin-top: 10px;
@@ -403,16 +409,29 @@ button svg {
   border-radius: 3px;
   color: var(--muted);
 }
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  margin-top: 20px;
+}
 .project-more {
   display: none;
   background: transparent;
   padding: 15px 0;
-  margin-top: 20px;
   font-size: 12px;
   border-bottom: 1px solid var(--line);
 }
 .project-more span {
   margin-left: 50px;
+}
+.project-action {
+  display: inline-block;
+  padding: 15px 0;
+  font-size: 12px;
+  border-bottom: 1px solid currentColor;
+  color: var(--accent-ink, var(--accent));
 }
 .all-projects {
   margin: 65px auto 0;
@@ -448,7 +467,7 @@ button svg {
 }
 .about-intro > p:not(.eyebrow):not(.about-lead) {
   margin-top: 20px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 2;
 }
@@ -460,38 +479,51 @@ button svg {
   padding-bottom: 8px;
 }
 .expertise-row {
+  position: relative;
   display: flex;
-  width: 100%;
   gap: 20px;
   align-items: start;
-  background: transparent;
-  text-align: left;
   border-top: 1px solid var(--line);
   padding: 28px 0;
   transition: padding 0.25s;
 }
-.expertise-row:hover {
+.expertise-row:hover,
+.expertise-row:has(button:focus-visible) {
   padding-left: 8px;
+}
+/* The arrow button stretches over the whole row so any part of it is clickable. */
+.expertise-row > button {
+  margin-left: auto;
+  padding: 0;
+  background: transparent;
+  font-size: 16px;
+  line-height: 1.4;
+  transition: transform 0.25s;
+}
+.expertise-row > button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.expertise-row:hover > button {
+  transform: translateX(4px);
 }
 .expertise-row > .mono {
   color: var(--accent);
   font-size: 10px;
   padding-top: 4px;
 }
-.expertise-row > span:last-child {
-  margin-left: auto;
-}
 .expertise-row h3 {
   font-size: 20px;
   margin-bottom: 12px;
 }
 .expertise-row p {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
 }
 .expertise-row small {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   margin-top: 8px;
 }

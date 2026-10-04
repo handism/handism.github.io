@@ -25,12 +25,14 @@ const { project } = Astro.props;
   <div class="project-content">
     <div class="project-title">
       <span class="project-number mono">/{project.number}</span>
-      <h3>
-        <button type="button" data-project={project.id}>
-          {project.title}
-        </button>
-      </h3>
+      <!-- Mouse shortcut only; the visual button above is the keyboard entry point. -->
+      <h3 data-project={project.id}>{project.title}</h3>
       <span class="project-category mono">{project.category}</span>
+      {project.action && (
+        <span class="project-badge mono">
+          {project.action.kind === 'demo' ? 'LIVE DEMO' : 'DOWNLOAD'}
+        </span>
+      )}
     </div>
     <p class="project-ja">{project.ja}</p>
     <p class="project-description">{project.description}</p>
@@ -39,8 +41,26 @@ const { project } = Astro.props;
         <span>{tech}</span>
       ))}
     </div>
-    <button class="project-more" type="button" data-project={project.id}>
-      Explore project <span aria-hidden="true">+</span>
-    </button>
+    <div class="project-links">
+      <button
+        class="project-more"
+        type="button"
+        data-project={project.id}
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        Explore project <span>+</span>
+      </button>
+      {project.action && (
+        <a
+          class="project-action"
+          href={project.action.href}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {project.action.label} ↗
+        </a>
+      )}
+    </div>
   </div>
 </article>

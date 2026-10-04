@@ -41,7 +41,15 @@
     gap: 20px;
   }
   .site-header nav a {
-    font-size: 10px;
+    position: relative;
+    font-size: 12px;
+  }
+  /* Enlarge tap targets without changing the compact look. */
+  .site-header nav a::after,
+  .filters button::after {
+    content: '';
+    position: absolute;
+    inset: -12px -8px;
   }
   .hero {
     height: auto;
@@ -72,7 +80,7 @@
     margin-top: 23px;
   }
   .hero-description {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 2;
   }
   .hero-cta {
@@ -126,7 +134,7 @@
   .section-heading > p {
     margin-top: 18px;
     max-width: none;
-    font-size: 12px;
+    font-size: 13px;
   }
   .filter-row {
     margin-bottom: 25px;
@@ -135,7 +143,8 @@
     gap: 2px;
   }
   .filters button {
-    font-size: 11px;
+    position: relative;
+    font-size: 12px;
     padding: 6px 13px;
   }
   .result-count {
@@ -158,7 +167,7 @@
     font-size: 14px;
   }
   .project-description {
-    font-size: 13px;
+    font-size: 14px;
   }
   .project-stack {
     margin-top: 16px;
@@ -254,7 +263,7 @@
     font-size: 15px;
   }
   .dialog-copy > p:not(.eyebrow):not(.dialog-ja) {
-    font-size: 13px;
+    font-size: 14px;
   }
   .desktop-only {
     display: none;

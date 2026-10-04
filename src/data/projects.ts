@@ -2,7 +2,11 @@ import type { ArtType } from './art';
 
 interface ProjectData {
   id: string;
-  action: { label: string; href: string } | null;
+  action: {
+    kind: 'demo' | 'download';
+    label: string;
+    href: string;
+  } | null;
   number: string;
   title: string;
   ja: string;
@@ -18,6 +22,7 @@ const projectData = [
   {
     id: 'sauna-simulator',
     action: {
+      kind: 'demo',
       label: 'ブラウザで試す',
       href: 'https://handism.github.io/sauna-simulator/',
     },
@@ -36,6 +41,7 @@ const projectData = [
   {
     id: 'sauna-itta',
     action: {
+      kind: 'demo',
       label: 'デモを試す',
       href: 'https://handism.github.io/sauna-itta/',
     },
@@ -69,6 +75,7 @@ const projectData = [
   {
     id: 'memo-explorer',
     action: {
+      kind: 'download',
       label: 'ダウンロード（VSIX v1.1.0）',
       href: 'https://github.com/handism/memo-explorer/releases/download/v1.1.0/memo-explorer-1.1.0.vsix',
     },

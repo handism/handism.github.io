@@ -69,19 +69,33 @@ filters.forEach((button) =>
 );
 
 let opener: HTMLElement | null = null;
-document
-  .querySelectorAll<HTMLButtonElement>('[data-project]')
-  .forEach((button) => {
-    button.addEventListener('click', () => {
-      const dialog = document.getElementById(
-        `detail-${button.dataset.project}`,
-      );
-      if (dialog instanceof HTMLDialogElement) {
-        opener = button;
-        dialog.showModal();
-      }
-    });
+const dialogFor = (id: string | undefined) => {
+  const dialog = id && document.getElementById(`detail-${id}`);
+  return dialog instanceof HTMLDialogElement ? dialog : null;
+};
+// Each open project gets its own URL hash (e.g. #sauna-simulator) for sharing.
+const openProject = (id: string | undefined, from: HTMLElement | null) => {
+  const dialog = dialogFor(id);
+  if (!dialog || dialog.open) return;
+  document
+    .querySelectorAll<HTMLDialogElement>('.project-dialog[open]')
+    .forEach((other) => other.close());
+  opener = from;
+  dialog.showModal();
+  history.replaceState(null, '', `#${id}`);
+};
+document.querySelectorAll<HTMLElement>('[data-project]').forEach((trigger) => {
+  trigger.addEventListener('click', () => {
+    // Title and "Explore" are mouse shortcuts; focus returns to the card's visual button.
+    const focusTarget =
+      trigger instanceof HTMLButtonElement && trigger.tabIndex >= 0
+        ? trigger
+        : trigger
+            .closest('.project')
+            ?.querySelector<HTMLElement>('.project-visual');
+    openProject(trigger.dataset.project, focusTarget ?? null);
   });
+});
 document
   .querySelectorAll<HTMLDialogElement>('.project-dialog')
   .forEach((dialog) => {
@@ -92,7 +106,13 @@ document
       if (event.target === dialog) dialog.close();
     });
     dialog.addEventListener('close', () => {
+      if (location.hash === `#${dialog.id.replace(/^detail-/, '')}`) {
+        history.replaceState(null, '', location.pathname + location.search);
+      }
       opener?.focus({ preventScroll: true });
       opener = null;
     });
   });
+const openFromHash = () => openProject(location.hash.slice(1), null);
+window.addEventListener('hashchange', openFromHash);
+openFromHash();

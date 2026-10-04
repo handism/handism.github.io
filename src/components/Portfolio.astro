@@ -7,6 +7,7 @@ import {
   projectCountLabel,
   projectFilters,
   filterCountLabel,
+  type ProjectId,
 } from '../data/projects';
 import { expertise } from '../data/expertise';
 import { githubRepositoriesUrl, githubUrl } from '../data/links';
@@ -22,6 +23,8 @@ interface Props {
 const { concept, demo = true } = Astro.props;
 const type = concept.id;
 const { hero, work, ticker, stamp } = concept;
+const projectTitle = (id: ProjectId) =>
+  projects.find((project) => project.id === id)?.title;
 ---
 
 <Base title={`handism — ${concept.name}`} theme={type} noindex={demo}>
@@ -169,19 +172,21 @@ const { hero, work, ticker, stamp } = concept;
       <div class="expertise reveal">
         <p class="eyebrow">MY TOOLBOX / 実績につながる技術</p>
         {expertise.map((item, i) => (
-          <button
-            class="expertise-row"
-            type="button"
-            data-project={item.projectId}
-          >
+          <div class="expertise-row">
             <span class="mono">{String(i + 1).padStart(2, '0')}</span>
             <div>
               <h3>{item.title}</h3>
               <p>{item.stack}</p>
               <small>{item.description}</small>
             </div>
-            <span aria-hidden="true">+</span>
-          </button>
+            <button
+              type="button"
+              data-project={item.projectId}
+              aria-label={`関連作品「${projectTitle(item.projectId)}」を見る`}
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
         ))}
       </div>
     </section>

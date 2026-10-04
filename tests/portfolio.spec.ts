@@ -31,6 +31,19 @@ test('selected editorial homepage works without demo controls', async ({
   expect(errors).toEqual([]);
 });
 
+test('project dialogs open from and clear the URL hash', async ({ page }) => {
+  await page.goto('/#memo-explorer');
+  await expect(page.getByRole('dialog')).toContainText('Memo Explorer');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect(page).toHaveURL(/\/$/);
+  await page
+    .getByRole('button', { name: '関連作品「Mini Brain」を見る' })
+    .click();
+  await expect(page.getByRole('dialog')).toContainText('Mini Brain');
+  await expect(page).toHaveURL(/\/#mini-brain$/);
+});
+
 for (const theme of ['lab', 'editorial', 'gallery']) {
   test(`${theme}: filters, details, keyboard and concept switching`, async ({
     page,

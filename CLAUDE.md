@@ -48,7 +48,7 @@ npm run format:check
 
 - `npm run test:browser`：Playwright が 4322 ポートで本番ビルドのプレビューを起動してテストする。ローカルではインストール済み Google Chrome、CI（`CI` 環境変数あり）では同梱 Chromium を使う
 - 公開サイトに対して実行：`PLAYWRIGHT_BASE_URL=https://handism.github.io npm run test:browser`
-- テスト範囲：3案のフィルター・ダイアログ・キーボード・モーション設定・375px幅での横はみ出し・比較ページへの移動、比較ページのアニメーション停止/再開とモーション低減設定への追従。実機スマートフォンや Safari は対象外
+- テスト範囲：3案のフィルター・ダイアログ（URLハッシュでの開閉を含む）・キーボード・モーション設定・375px幅での横はみ出し・比較ページへの移動、比較ページのアニメーション停止/再開とモーション低減設定への追従。実機スマートフォンや Safari は対象外
 - `npm run capture`：4321 ポートの dev/preview サーバー（`BASE_URL` で変更可）からPC・スマホの画像を撮影し、OSの一時ディレクトリの `handism-portfolio-previews/` に保存（`CAPTURE_DIR` で変更可）
 - `npm run og-image`：トップページを 1200×630 で撮影して `public/og.png` を更新
 

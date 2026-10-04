@@ -348,9 +348,6 @@
 .art-map + .visual-index {
   color: #2a4234;
 }
-.art-map ~ .visual-caption {
-  color: #345c50;
-}
 .art-brain {
   background: radial-gradient(
     ellipse at 65% 35%,
@@ -427,8 +424,8 @@
 }
 .brain-label {
   position: absolute;
-  bottom: 10%;
-  right: 8%;
+  bottom: 9%;
+  left: 8%;
   font: 7px var(--display);
   color: #c8c3e0;
   letter-spacing: 0.1em;
@@ -482,6 +479,7 @@
 }
 .memo-body aside {
   background: #25332d;
+  white-space: nowrap;
   padding: 15px 10px;
   border-right: 1px solid #3d4a40;
 }
@@ -524,25 +522,8 @@
 .art-memo + .visual-index {
   color: #454638;
 }
-.art-memo ~ .visual-caption {
-  color: #454638;
-}
 
 .art-hero {
   width: auto;
   height: auto;
-}
-.motion-toggle.motion-standalone {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  z-index: 20;
-  width: 40px;
-  height: 40px;
-  margin: 0;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: var(--bg);
-  color: var(--fg);
-  box-shadow: 0 3px 16px #0001;
 }

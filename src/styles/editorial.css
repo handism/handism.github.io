@@ -3,9 +3,11 @@
 .chooser {
   --bg: #f3f1e9;
   --fg: #262820;
-  --muted: #6e7167;
+  --muted: #5f6259;
   --line: #cfcec3;
   --accent: #e15a32;
+  /* Darker accent for small text and filled controls (WCAG AA). */
+  --accent-ink: #bf4320;
   color-scheme: light;
 }
 .editorial {
@@ -82,8 +84,8 @@
   bottom: 70px;
   transform: rotate(-9deg);
   font: 700 12px/1.25 var(--display);
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  border: 1px solid var(--accent-ink);
+  color: var(--accent-ink);
   border-radius: 50%;
   width: 90px;
   height: 90px;
@@ -102,7 +104,14 @@
   padding-top: 35px;
 }
 .editorial .filters button[aria-pressed='true'] {
+  background: var(--accent-ink);
   color: #fff;
+}
+.editorial .visual-index {
+  display: none;
+}
+.editorial .expertise-row > .mono {
+  color: var(--accent-ink);
 }
 .editorial .project-grid {
   display: block;
@@ -149,7 +158,7 @@
 }
 .editorial .project-description {
   line-height: 2.1;
-  max-width: 340px;
+  max-width: 400px;
 }
 .editorial .project-stack span {
   border: 0;
@@ -223,6 +232,12 @@
   .editorial .hero .flower {
     width: 70%;
     left: 15%;
+  }
+  .editorial .hero-bottom > span {
+    max-width: none;
+  }
+  .editorial .hero-bottom > a {
+    display: none;
   }
   .editorial-stamp {
     right: 8%;

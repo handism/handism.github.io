@@ -18,8 +18,9 @@ const { project } = Astro.props;
     <span class="visual-index mono">
       {project.number} / {project.category.toUpperCase()}
     </span>
-    <span class="visual-open">↗</span>
-    <span class="visual-caption">CONCEPT VISUAL</span>
+    <span class="visual-open" aria-hidden="true">
+      +
+    </span>
   </button>
   <div class="project-content">
     <div class="project-title">
@@ -39,7 +40,7 @@ const { project } = Astro.props;
       ))}
     </div>
     <button class="project-more" type="button" data-project={project.id}>
-      Explore project <span>↗</span>
+      Explore project <span aria-hidden="true">+</span>
     </button>
   </div>
 </article>

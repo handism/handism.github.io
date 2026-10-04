@@ -95,3 +95,9 @@ export const projectFilters = [
   'All',
   ...new Set(projects.map((project) => project.filter)),
 ];
+export const filterCountLabel = (filter: (typeof projectFilters)[number]) =>
+  String(
+    filter === 'All'
+      ? projectCount
+      : projects.filter((project) => project.filter === filter).length,
+  ).padStart(2, '0');

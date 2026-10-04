@@ -6,6 +6,7 @@ import {
   projectCount,
   projectCountLabel,
   projectFilters,
+  filterCountLabel,
 } from '../data/projects';
 import { expertise } from '../data/expertise';
 import { githubRepositoriesUrl, githubUrl } from '../data/links';
@@ -109,14 +110,19 @@ const { hero, work, ticker, stamp } = concept;
           </p>
           <h2>{work.title}</h2>
         </div>
-        <p>つくるたび、少しずつ世界が広がる。</p>
+        <p>
+          つくるたび、少しずつ世界が広がる。
+          <span class="visual-note">
+            ※ 作品画像は、内容をイメージしたイラストです。
+          </span>
+        </p>
       </div>
       <div class="filter-row reveal">
         <div class="filters" role="group" aria-label="作品のカテゴリー">
           {projectFilters.map((filter, i) => (
             <button type="button" data-filter={filter} aria-pressed={i === 0}>
               {filter}
-              {filter === 'All' && <sup>{projectCountLabel}</sup>}
+              <sup aria-hidden="true">{filterCountLabel(filter)}</sup>
             </button>
           ))}
         </div>
@@ -174,7 +180,7 @@ const { hero, work, ticker, stamp } = concept;
               <p>{item.stack}</p>
               <small>{item.description}</small>
             </div>
-            <span>↗</span>
+            <span aria-hidden="true">+</span>
           </button>
         ))}
       </div>

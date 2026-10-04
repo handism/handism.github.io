@@ -72,7 +72,7 @@
     margin-top: 23px;
   }
   .hero-description {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 2;
   }
   .hero-cta {
@@ -126,7 +126,7 @@
   .section-heading > p {
     margin-top: 18px;
     max-width: none;
-    font-size: 11px;
+    font-size: 12px;
   }
   .filter-row {
     margin-bottom: 25px;
@@ -155,23 +155,30 @@
     padding-top: 20px;
   }
   .project-ja {
-    font-size: 12px;
+    font-size: 14px;
   }
   .project-description {
-    font-size: 11px;
+    font-size: 13px;
   }
   .project-stack {
     margin-top: 16px;
   }
   .project-stack span {
-    font-size: 10px;
+    font-size: 11px;
+  }
+  .brain-chat {
+    top: 32%;
+    padding: 16px;
+  }
+  .brain-chat p {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .brain-label {
+    display: none;
   }
   .visual-index {
     top: 17px;
-    left: 18px;
-    font-size: 10px;
-  }
-  .visual-caption {
     left: 18px;
     font-size: 10px;
   }
@@ -247,7 +254,7 @@
     font-size: 15px;
   }
   .dialog-copy > p:not(.eyebrow):not(.dialog-ja) {
-    font-size: 12px;
+    font-size: 13px;
   }
   .desktop-only {
     display: none;

@@ -60,6 +60,34 @@
 .motion-toggle[aria-pressed='true'] {
   color: #37663c;
 }
+.motion-toggle svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: auto;
+  fill: currentColor;
+}
+.motion-toggle .icon-play,
+.motion-toggle[aria-pressed='true'] .icon-pause {
+  display: none;
+}
+.motion-toggle[aria-pressed='true'] .icon-play {
+  display: block;
+}
+.motion-toggle.motion-standalone {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  z-index: 20;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--fg);
+  box-shadow: 0 3px 16px #0001;
+}
 .project-dialog {
   border: 1px solid var(--line);
   background: var(--bg);

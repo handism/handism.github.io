@@ -192,7 +192,7 @@ button svg {
   margin-top: 26px;
 }
 .hero-description {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   line-height: 2.1;
   margin-top: 14px;
@@ -262,9 +262,14 @@ button svg {
   letter-spacing: -0.045em;
 }
 .section-heading > p {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   padding-bottom: 6px;
+}
+.visual-note {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
 }
 .filter-row {
   display: flex;
@@ -345,15 +350,7 @@ button svg {
   transition: transform 0.3s;
 }
 .project-visual:hover .visual-open {
-  transform: rotate(45deg);
-}
-.visual-caption {
-  position: absolute;
-  bottom: 20px;
-  left: 22px;
-  color: #fff9;
-  font: 10px var(--display);
-  letter-spacing: 0.15em;
+  transform: rotate(90deg);
 }
 .project-content {
   padding-top: 25px;
@@ -383,11 +380,11 @@ button svg {
   margin-left: auto;
 }
 .project-ja {
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 15px;
 }
 .project-description {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.9;
   color: var(--muted);
   margin-top: 10px;
@@ -400,7 +397,7 @@ button svg {
   margin-top: 20px;
 }
 .project-stack span {
-  font-size: 10px;
+  font-size: 11px;
   border: 1px solid var(--line);
   padding: 4px 10px;
   border-radius: 3px;
@@ -451,7 +448,7 @@ button svg {
 }
 .about-intro > p:not(.eyebrow):not(.about-lead) {
   margin-top: 20px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   line-height: 2;
 }
@@ -489,12 +486,12 @@ button svg {
   margin-bottom: 12px;
 }
 .expertise-row p {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 .expertise-row small {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 8px;
 }

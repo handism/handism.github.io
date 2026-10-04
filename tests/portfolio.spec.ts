@@ -12,6 +12,11 @@ test('selected editorial homepage works without demo controls', async ({
   await expect(page.locator('.concept-switcher')).toHaveCount(0);
   await page.getByRole('button', { name: '動きを停止', exact: true }).click();
   await expect(page.locator('body')).toHaveClass(/motion-paused/);
+  await expect(page.locator('.motion-toggle .icon-play')).toBeVisible();
+  await expect(page.locator('.motion-toggle .icon-pause')).toBeHidden();
+  await expect(
+    page.getByRole('button', { name: 'Web', exact: true }),
+  ).toContainText('02');
   await page.getByRole('button', { name: 'Tools', exact: true }).click();
   await expect(page.locator('.project:visible')).toHaveCount(1);
   await page.getByRole('button', { name: 'Memo Explorerの詳細を見る' }).click();

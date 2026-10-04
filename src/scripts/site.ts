@@ -16,10 +16,7 @@ const syncMotion = () => {
         : '動きを再開'
       : '動きを停止',
   );
-  if (motionToggle) {
-    motionToggle.textContent = paused ? '▷' : 'Ⅱ';
-    motionToggle.disabled = motionQuery.matches;
-  }
+  if (motionToggle) motionToggle.disabled = motionQuery.matches;
 };
 motionToggle?.addEventListener('click', () => {
   manualPause = !manualPause;

@@ -186,6 +186,12 @@
   .brain-label {
     display: none;
   }
+  .chat-panel {
+    inset: 12% 8% 12% 30%;
+  }
+  .chat-diff {
+    display: none;
+  }
   .visual-index {
     top: 17px;
     left: 18px;

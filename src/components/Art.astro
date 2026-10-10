@@ -131,4 +131,30 @@ const { type, hero = false } = Astro.props;
       </div>
     </>
   )}
+  {type === 'chat' && (
+    <>
+      <div class="chat-glow"></div>
+      <div class="chat-panel">
+        <div class="chat-head">
+          <span>LOCAL FM CHAT</span>
+          <i>● on-device</i>
+        </div>
+        <p class="chat-bubble you">この段落、読みやすくして。</p>
+        <p class="chat-bubble model">
+          候補ができました。
+          <br />
+          差分を見てから適用できます。
+        </p>
+        <div class="chat-diff">
+          <span class="del"></span>
+          <span class="add"></span>
+          <span class="add short"></span>
+        </div>
+        <div class="chat-input">
+          メッセージ<b class="caret">▍</b>
+        </div>
+      </div>
+      <span class="chat-label">STAYS ON YOUR MAC.</span>
+    </>
+  )}
 </div>

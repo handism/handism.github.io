@@ -42,6 +42,14 @@ test('project dialogs open from and clear the URL hash', async ({ page }) => {
     .click();
   await expect(page.getByRole('dialog')).toContainText('Mini Brain');
   await expect(page).toHaveURL(/\/#mini-brain$/);
+  await page.goto('/#apple-fm-chatui');
+  await expect(page.getByRole('dialog')).toContainText('Local FM Chat');
+  await expect(
+    page.getByRole('dialog').getByRole('link', { name: /VSIX/ }),
+  ).toHaveAttribute(
+    'href',
+    'https://github.com/handism/apple-fm-chatui/releases/latest',
+  );
 });
 
 for (const theme of ['lab', 'editorial', 'gallery']) {
@@ -53,8 +61,8 @@ for (const theme of ['lab', 'editorial', 'gallery']) {
     await page.goto(`/${theme}/`);
     await expect(page.locator('h1')).toBeVisible();
     await page.getByRole('button', { name: 'AI', exact: true }).click();
-    await expect(page.locator('.project:visible')).toHaveCount(1);
-    await expect(page.locator('.result-count')).toHaveText('1 PROJECT');
+    await expect(page.locator('.project:visible')).toHaveCount(2);
+    await expect(page.locator('.result-count')).toHaveText('2 PROJECTS');
     const open = page.getByRole('button', { name: 'Mini Brainの詳細を見る' });
     await open.click();
     await expect(page.getByRole('dialog')).toBeVisible();
@@ -71,7 +79,7 @@ for (const theme of ['lab', 'editorial', 'gallery']) {
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(open).toBeFocused();
     await page.getByRole('button', { name: /^All/ }).click();
-    await expect(page.locator('.project:visible')).toHaveCount(4);
+    await expect(page.locator('.project:visible')).toHaveCount(5);
     await page.getByRole('button', { name: '動きを停止', exact: true }).click();
     await expect(page.locator('body')).toHaveClass(/motion-paused/);
     await page.getByRole('button', { name: '動きを再開' }).click();

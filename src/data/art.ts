@@ -1,2 +1,2 @@
 export type ArtType =
-  'orbit' | 'flower' | 'portal' | 'sauna' | 'map' | 'brain' | 'memo';
+  'orbit' | 'flower' | 'portal' | 'sauna' | 'map' | 'brain' | 'memo' | 'chat';

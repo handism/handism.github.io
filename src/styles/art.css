@@ -522,6 +522,110 @@
 .art-memo + .visual-index {
   color: #454638;
 }
+.art-chat {
+  background: linear-gradient(160deg, #e4e2ec, #c4c8d9 55%, #a9b0c8);
+}
+.chat-glow {
+  position: absolute;
+  left: 8%;
+  top: 14%;
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 40% 35%,
+    #fbe3ef,
+    #d7c2ef 35%,
+    #a8c4ee 60%,
+    #a8c4ee00 72%
+  );
+  filter: blur(4px);
+  animation: breathe 8s ease-in-out infinite;
+}
+.chat-panel {
+  position: absolute;
+  inset: 16% 12% 14% 34%;
+  background: #1f2230;
+  border: 1px solid #4a4f66;
+  border-radius: 8px;
+  box-shadow: 12px 20px 30px #3b405a40;
+  color: #c9cce0;
+  padding: 0 12px 12px;
+  transform: rotate(3deg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chat-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 28px;
+  margin: 0 -12px;
+  padding: 0 12px;
+  border-bottom: 1px solid #383c50;
+  font: 7px var(--display);
+  letter-spacing: 0.12em;
+}
+.chat-head i {
+  font: 7px monospace;
+  color: #9fd7b3;
+}
+.chat-bubble {
+  font-size: 9px;
+  line-height: 1.6;
+  padding: 7px 10px;
+  border-radius: 9px;
+  max-width: 82%;
+}
+.chat-bubble.you {
+  align-self: flex-end;
+  background: #6c78c4;
+  color: #f3f4ff;
+}
+.chat-bubble.model {
+  background: #2d3144;
+}
+.chat-diff {
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 6px;
+  background: #262a3a;
+}
+.chat-diff span {
+  height: 3px;
+  width: 80%;
+}
+.chat-diff .del {
+  background: #b0727e;
+}
+.chat-diff .add {
+  background: #74a88a;
+}
+.chat-diff .add.short {
+  width: 55%;
+}
+.chat-input {
+  margin-top: auto;
+  font-size: 8px;
+  color: #7d8199;
+  padding: 6px 9px;
+  border: 1px solid #3c4157;
+  border-radius: 6px;
+}
+.chat-label {
+  position: absolute;
+  bottom: 7%;
+  left: 8%;
+  font: 7px var(--display);
+  color: #4c5372;
+  letter-spacing: 0.1em;
+}
+.art-chat + .visual-index {
+  color: #3b4160;
+}
 
 .art-hero {
   width: auto;

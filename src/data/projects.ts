@@ -95,6 +95,25 @@ const projectData = [
       'Markdownの全文検索、デイリーノート、ブックマーク、ドラッグ＆ドロップに対応。日々の作業になじむ操作と、複数OSでの検証を大切にしています。',
     stack: ['TypeScript', 'VS Code API', 'GitHub Actions'],
   },
+  {
+    id: 'apple-fm-chatui',
+    action: {
+      kind: 'download',
+      label: '最新版を入手（VSIX）',
+      href: 'https://github.com/handism/apple-fm-chatui/releases/latest',
+    },
+    number: '05',
+    title: 'Local FM Chat',
+    ja: 'Macの中で、そっと相談する。',
+    category: 'On-device AI',
+    filter: 'AI',
+    art: 'chat',
+    description:
+      'MacのApple Foundation Modelsと、VS Codeのサイドバーで会話する。APIキーも外部通信もいらない、手元だけのチャット。',
+    detail:
+      '選択した文章の要約・言い換え・英訳を差分で確認してから適用できる設計。Swiftのヘルパーでオンデバイスモデルを呼び出し、会話はメモリ内だけに保持します。',
+    stack: ['TypeScript', 'Swift', 'VS Code API', 'Foundation Models'],
+  },
 ] as const satisfies readonly ProjectData[];
 
 export type ProjectId = (typeof projectData)[number]['id'];

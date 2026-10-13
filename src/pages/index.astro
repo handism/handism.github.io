@@ -1,6 +1,177 @@
 ---
-import Portfolio from '../components/Portfolio.astro';
-import { getTheme } from '../data/themes';
+import Base from '../layouts/Base.astro';
+import Art from '../components/Art.astro';
+import {
+  projects,
+  projectCount,
+  projectCountLabel,
+  projectFilters,
+  filterCountLabel,
+  type ProjectId,
+} from '../data/projects';
+import { expertise } from '../data/expertise';
+import { githubRepositoriesUrl, githubUrl } from '../data/links';
+import { formatProjectCount } from '../utils/format';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProjectDialog from '../components/ProjectDialog.astro';
+import MotionToggle from '../components/MotionToggle.astro';
+const projectTitle = (id: ProjectId) =>
+  projects.find((project) => project.id === id)?.title;
 ---
 
-<Portfolio concept={getTheme('editorial')} demo={false} />
+<Base title="handism — The Edit">
+  <header class="site-header">
+    <a class="wordmark" href="/">
+      handism<span>®</span>
+    </a>
+    <nav aria-label="メインナビゲーション">
+      <a href="#work">
+        Work <sup>{projectCountLabel}</sup>
+      </a>
+      <a href="#about">About</a>
+      <a href={githubUrl} target="_blank" rel="noreferrer">
+        GitHub ↗
+      </a>
+    </nav>
+    <span class="header-note mono">THE PORTFOLIO ISSUE / 2026</span>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div class="hero-topline mono">
+        <span>DESIGNING THROUGH CODE</span>
+        <span>BASED IN CURIOSITY</span>
+      </div>
+      <div class="hero-copy">
+        <p class="eyebrow">A PERSONAL COLLECTION BY HANDISM</p>
+        <h1>
+          Curiosity,
+          <br />
+          <em>made tangible.</em>
+        </h1>
+        <p class="hero-jp">好奇心を、かたちにする。</p>
+        <p class="hero-description">
+          暮らしの小さな不便から、好きなことの探求まで。
+          <br />
+          考えて、試して、つくってきたものの記録。
+        </p>
+        <a class="hero-cta" href="#work">
+          つくったものを見る
+          <span>↘</span>
+        </a>
+      </div>
+      <Art type="flower" hero />
+      <div class="hero-bottom mono">
+        <span>VOLUME 01 — SELECTED WORKS</span>
+        <a href="#work">SCROLL TO EXPLORE ↓</a>
+      </div>
+      <span class="editorial-stamp">
+        THINK
+        <br />
+        MAKE
+        <br />
+        REPEAT ↗
+      </span>
+    </section>
+    <section id="work" class="work section-wrap">
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">
+            SELECTED WORK / 01—
+            {projectCountLabel}
+          </p>
+          <h2>Selected works.</h2>
+        </div>
+        <p>
+          つくるたび、少しずつ世界が広がる。
+          <span class="visual-note">
+            ※ 作品画像は、内容をイメージしたイラストです。
+          </span>
+        </p>
+      </div>
+      <div class="filter-row reveal">
+        <div class="filters" role="group" aria-label="作品のカテゴリー">
+          {projectFilters.map((filter, i) => (
+            <button type="button" data-filter={filter} aria-pressed={i === 0}>
+              {filter}
+              <sup aria-hidden="true">{filterCountLabel(filter)}</sup>
+            </button>
+          ))}
+        </div>
+        <span class="mono result-count" aria-live="polite">
+          {formatProjectCount(projectCount)}
+        </span>
+      </div>
+      <div class="project-grid">
+        {projects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+      <a
+        class="all-projects"
+        href={githubRepositoriesUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span>まだまだ、実験中。</span>すべてのリポジトリをGitHubで見る ↗
+      </a>
+    </section>
+    <section id="about" class="about section-wrap">
+      <div class="about-intro reveal">
+        <p class="eyebrow">BEHIND THE WORK</p>
+        <h2>
+          It starts with
+          <br />
+          <em>“what if?”</em>
+        </h2>
+        <p class="about-lead">
+          好きなことを、深く。
+          <br />
+          気になることを、まずつくる。
+        </p>
+        <p>
+          サウナで過ごす時間も、メモを書く習慣も、
+          <br class="desktop-only" />
+          新しい技術への興味も。ものづくりの入口は、日常の中に。
+        </p>
+        <a href={githubUrl} target="_blank" rel="noreferrer">
+          Meet me on GitHub ↗
+        </a>
+      </div>
+      <div class="expertise reveal">
+        <p class="eyebrow">MY TOOLBOX / 実績につながる技術</p>
+        {expertise.map((item, i) => (
+          <div class="expertise-row">
+            <span class="mono">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.stack}</p>
+              <small>{item.description}</small>
+            </div>
+            <button
+              type="button"
+              data-project={item.projectId}
+              aria-label={`関連作品「${projectTitle(item.projectId)}」を見る`}
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
+    <footer class="site-footer section-wrap">
+      <p class="eyebrow">THE NEXT IDEA IS ALREADY ON ITS WAY.</p>
+      <a href={githubUrl} target="_blank" rel="noreferrer">
+        Stay curious.<span>↗</span>
+      </a>
+      <div class="footer-bottom mono">
+        <span>HANDISM © 2026</span>
+        <span>MADE OF SMALL EXPERIMENTS</span>
+        <a href="#main">BACK TO TOP ↑</a>
+      </div>
+    </footer>
+  </main>
+  <MotionToggle />
+  {projects.map((project) => (
+    <ProjectDialog project={project} />
+  ))}
+</Base>

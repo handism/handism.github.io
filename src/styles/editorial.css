@@ -1,6 +1,5 @@
 /* B: print-like rhythm, warm paper, large typography, horizontal stories. */
-.editorial,
-.chooser {
+.editorial {
   --bg: #f3f1e9;
   --fg: #262820;
   --muted: #5f6259;
@@ -40,9 +39,6 @@
 }
 .editorial .hero-topline {
   font-size: 10px;
-}
-.editorial .hero-topline .status-dot {
-  display: none;
 }
 .editorial .hero-copy {
   padding-top: 100px;

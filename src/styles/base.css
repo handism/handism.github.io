@@ -108,18 +108,6 @@ button svg {
 .section-wrap {
   padding: 100px max(6vw, 24px);
 }
-.status-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  border-radius: 50%;
-  margin-right: 10px;
-  box-shadow: 0 0 14px color-mix(in srgb, var(--accent), transparent 50%);
-}
-.mobile-only {
-  display: none;
-}
 .site-header {
   display: flex;
   align-items: center;
@@ -218,37 +206,13 @@ button svg {
   position: absolute;
   bottom: 28px;
   left: 6vw;
-  right: 6vw;
-}
-/* Leave room for the fixed motion toggle in the bottom-right corner. */
-body:has(.motion-standalone) .hero-bottom {
+  /* Leave room for the fixed motion toggle in the bottom-right corner. */
   right: max(6vw, 96px);
 }
 .art-hero {
   position: absolute !important;
   inset: 0 0 0 43%;
   z-index: 0;
-}
-.ticker {
-  overflow: hidden;
-  background: var(--accent);
-  color: #171c12;
-  padding: 18px 0;
-  font-family: var(--display);
-  font-size: 15px;
-  letter-spacing: 0.09em;
-}
-.ticker > div {
-  display: flex;
-  width: max-content;
-  animation: ticker 35s linear infinite;
-}
-.ticker span {
-  white-space: nowrap;
-}
-.ticker i {
-  font-style: normal;
-  margin: 0 40px;
 }
 .section-heading {
   display: flex;

@@ -7,71 +7,6 @@
   height: 100%;
   min-height: 0;
 }
-.art-orbit {
-  background: radial-gradient(ellipse at 56% 48%, #5263292b, transparent 55%);
-}
-.orbit-system {
-  position: absolute;
-  width: 80%;
-  aspect-ratio: 1;
-  left: 10%;
-  top: 50%;
-  transform: translateY(-50%) rotate(-22deg);
-  perspective: 800px;
-}
-.orbit-core {
-  position: absolute;
-  inset: 30%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 35% 26%,
-    #d9ff9c,
-    #759444 22%,
-    #293a22 57%,
-    #0c170e 80%
-  );
-  box-shadow:
-    inset -12px -10px 28px #0008,
-    0 0 65px #bdff6433;
-  animation: breathe 7s ease-in-out infinite;
-}
-.orbit-ring {
-  position: absolute;
-  inset: calc(1% + var(--i) * 2%);
-  border: 1px solid rgba(198, 237, 133, 0.62);
-  border-radius: 50%;
-  transform: rotateX(calc(58deg + var(--i) * 3deg));
-  box-shadow: 0 0 9px #d5ff7112;
-  animation: orbit 22s linear infinite;
-  animation-delay: calc(var(--i) * -0.5s);
-}
-.orbit-label {
-  position: absolute;
-  bottom: 7%;
-  left: 20%;
-  font: 8px var(--display);
-  letter-spacing: 0.2em;
-  color: #a7bb87;
-  transform: rotate(22deg);
-}
-.orbit-point {
-  position: absolute;
-  top: 26%;
-  right: 17%;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #eaffb1;
-  box-shadow: 0 0 25px #d5ff71;
-}
-.hero .art-orbit:after {
-  content: '+';
-  font: 18px var(--display);
-  position: absolute;
-  right: 12%;
-  top: 16%;
-  color: #7b865f;
-}
 .flower {
   position: absolute;
   width: 65%;
@@ -100,41 +35,6 @@
   border-radius: 50%;
   background: #ef4c24;
   box-shadow: 0 0 50px #d14b2540;
-}
-.art-portal {
-  background: radial-gradient(
-    ellipse at 50% 50%,
-    #ed805124,
-    #39205245 42%,
-    transparent 70%
-  );
-}
-.portal {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 80%;
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%) rotate(-25deg);
-  animation: portal-drift 18s ease-in-out infinite alternate;
-}
-.portal i {
-  position: absolute;
-  inset: calc(var(--i) * 2.2%);
-  border: 1px solid
-    color-mix(in srgb, #e5b4ff calc(15% + var(--i) * 4%), #764a8a);
-  border-radius: 44% 47% 44% 48%;
-  transform: rotate(calc(var(--i) * 7deg)) rotateY(24deg);
-  box-shadow:
-    inset 2px 1px 6px #e99eb515,
-    2px 2px 8px #af89ff20;
-}
-.portal b {
-  position: absolute;
-  inset: 36%;
-  border-radius: 50%;
-  background: radial-gradient(circle, #f1b4a88c, #7143a529, transparent 70%);
-  filter: blur(15px);
 }
 .art-sauna {
   background: linear-gradient(#1b4243, #667c67 60%, #94ac8b);

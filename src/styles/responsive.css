@@ -94,10 +94,6 @@
     opacity: 0.9;
     z-index: -1;
   }
-  .hero .orbit-system {
-    width: 80%;
-    left: 10%;
-  }
   .hero-bottom {
     font-size: 10px;
     bottom: 24px;
@@ -108,13 +104,6 @@
   .hero-bottom > a {
     max-width: 130px;
     text-align: right;
-  }
-  .ticker {
-    font-size: 11px;
-    padding: 14px 0;
-  }
-  .ticker i {
-    margin: 0 22px;
   }
   .section-wrap {
     padding: 65px 6vw;
@@ -245,16 +234,6 @@
   }
   .footer-bottom > span:nth-child(2) {
     display: none;
-  }
-  .switch-divider {
-    margin: 0 2px;
-  }
-  .motion-toggle {
-    padding: 8px;
-    min-width: 31px;
-  }
-  .mobile-only {
-    display: block;
   }
   .dialog-inner > .art {
     height: 225px;

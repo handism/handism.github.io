@@ -11,27 +11,9 @@ const { type, hero = false } = Astro.props;
   class:list={['art', `art-${type}`, { 'art-hero': hero }]}
   aria-hidden="true"
 >
-  {type === 'orbit' && (
-    <div class="orbit-system">
-      <div class="orbit-core"></div>
-      {Array.from({ length: 12 }, (_, i) => (
-        <i class="orbit-ring" style={`--i:${i}`}></i>
-      ))}
-      <span class="orbit-label">CURIOSITY IN ORBIT / 001</span>
-      <b class="orbit-point"></b>
-    </div>
-  )}
   {type === 'flower' && (
     <div class="flower">
       {Array.from({ length: 12 }, (_, i) => (
-        <i style={`--i:${i}`}></i>
-      ))}
-      <b></b>
-    </div>
-  )}
-  {type === 'portal' && (
-    <div class="portal">
-      {Array.from({ length: 16 }, (_, i) => (
         <i style={`--i:${i}`}></i>
       ))}
       <b></b>

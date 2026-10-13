@@ -4,23 +4,21 @@ handism の Astro 製ポートフォリオ（https://handism.github.io/）。外
 
 ## ページ構成
 
-- `/`：採用版（B / The Edit）。`src/pages/index.astro` で `getTheme('editorial')` を選択。比較用バーは出さず、右下のモーション停止ボタンだけ置く
-- `/lab/`・`/editorial/`・`/gallery/`：保存した3案（`src/pages/[theme].astro`）。ページ下部のバーで別案・比較ページへ移動できる
-- `/concepts/`：3案の比較ページ
-- canonical と OGP（`public/og.png`）を全ページに設定。トップ以外は `noindex`
+- `/` のみの1ページ構成（`src/pages/index.astro`）。デザインは検討時の B / The Edit 案を採用し、別案（Midnight Lab・Elsewhere）と比較ページは 2026-10-14 に削除済み
+- `<body class="editorial">` で `editorial.css` の配色・レイアウトを `base.css` の上に重ねる構造は残している
+- canonical と OGP（`public/og.png`）を設定
 
 ## コードの配置
 
 - `src/data/projects.ts`：作品情報、作品数、カテゴリー一覧
-- `src/data/themes.ts`：テーマ情報、イラストの種類、テーマ別の見出し・文言
 - `src/data/expertise.ts`：About欄の技術と対応するプロジェクト
 - `src/data/art.ts`：コンセプトイラストの種類（`Art.astro` の `type` の型）
 - `src/data/links.ts`：GitHubのURL
 - `src/utils/format.ts`：ビルド時表示と絞り込みスクリプトで共有する件数表示
 - `src/components/ProjectCard.astro` / `ProjectDialog.astro`：作品一覧と詳細
-- `src/components/MotionToggle.astro`：トップ・各案・比較ページ共通の停止ボタン
-- `src/styles/global.css`：CSSの読み込み口。共通 → イラスト → テーマ → 操作部品 → 比較ページ → アニメーション → レスポンシブ の順序を維持する
-  - テーマ・比較ページ固有のメディアクエリは各テーマのCSSに置く
+- `src/components/MotionToggle.astro`：右下に固定表示するモーション停止ボタン
+- `src/styles/global.css`：CSSの読み込み口。共通 → イラスト → テーマ（editorial）→ 操作部品 → アニメーション → レスポンシブ の順序を維持する
+  - テーマ固有のメディアクエリは `editorial.css` に置く
   - モーション低減の指定は `animations.css`、共通のレスポンシブ指定は `responsive.css`
 
 ## コンテンツの方針
@@ -48,8 +46,8 @@ npm run format:check
 
 - `npm run test:browser`：Playwright が 4322 ポートで本番ビルドのプレビューを起動してテストする。ローカルではインストール済み Google Chrome、CI（`CI` 環境変数あり）では同梱 Chromium を使う
 - 公開サイトに対して実行：`PLAYWRIGHT_BASE_URL=https://handism.github.io npm run test:browser`
-- テスト範囲：3案のフィルター・ダイアログ（URLハッシュでの開閉を含む）・キーボード・モーション設定・375px幅での横はみ出し・比較ページへの移動、比較ページのアニメーション停止/再開とモーション低減設定への追従。実機スマートフォンや Safari は対象外
-- `npm run capture`：4321 ポートの dev/preview サーバー（`BASE_URL` で変更可）からPC・スマホの画像を撮影し、OSの一時ディレクトリの `handism-portfolio-previews/` に保存（`CAPTURE_DIR` で変更可）
+- テスト範囲：トップページのフィルター・ダイアログ（URLハッシュでの開閉を含む）・キーボード・モーション設定（停止/再開とモーション低減設定への追従）・375px幅での横はみ出し、削除した旧デザイン案のURLが404になること。実機スマートフォンや Safari は対象外
+- `npm run capture`：4321 ポートの dev/preview サーバー（`BASE_URL` で変更可）からトップページのPC・スマホの画像を撮影し、OSの一時ディレクトリの `handism-portfolio-previews/` に保存（`CAPTURE_DIR` で変更可）
 - `npm run og-image`：トップページを 1200×630 で撮影して `public/og.png` を更新
 
 ## デプロイ

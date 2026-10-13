@@ -1,2 +1,1 @@
-export type ArtType =
-  'orbit' | 'flower' | 'portal' | 'sauna' | 'map' | 'brain' | 'memo' | 'chat';
+export type ArtType = 'flower' | 'sauna' | 'map' | 'brain' | 'memo' | 'chat';
